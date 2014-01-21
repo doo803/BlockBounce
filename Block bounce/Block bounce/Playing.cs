@@ -19,6 +19,7 @@ namespace Block_bounce
         public levels.level3 l3 = new levels.level3();
         public levels.level4 l4 = new levels.level4();
         public levels.level5 l5 = new levels.level5();
+        public levels.level6 l6 = new levels.level6();
 
         public int currentLevel;
         public Vector2 playerPosition;
@@ -53,6 +54,9 @@ namespace Block_bounce
 
             // Load Content from level5
             l5.LoadContent(Content);
+
+            // Load content from level6
+            l6.LoadContent(Content);
         }
 
         // Update
@@ -66,7 +70,7 @@ namespace Block_bounce
 
             switch (currentLevel)
             {
-                // Update when current level = 1
+                // Update per each level
                 #region
                 case 1:
                     {
@@ -99,6 +103,12 @@ namespace Block_bounce
                     {
                         currentLevel = l5.currentLevel;
                         l5.Update(gameTime);
+                        break;
+                    }
+                case 6:
+                    {
+                        currentLevel = l6.currentLevel;
+                        l6.Update(gameTime);
                         break;
                     }
                 #endregion
@@ -141,6 +151,11 @@ namespace Block_bounce
                         l5.Draw(spriteBatch);
                         break;
                     }
+                case 6:
+                    {
+                        l6.Draw(spriteBatch);
+                        break;
+                    }
                 #endregion
             }
         }
@@ -166,7 +181,7 @@ namespace Block_bounce
                 if (keyState.IsKeyDown(Keys.NumPad4) || GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
                 {
                     i++;
-                    if (i == 1 && currentLevel > 1)
+                    if (i == 1)
                     {
                         currentLevel--;
                     }

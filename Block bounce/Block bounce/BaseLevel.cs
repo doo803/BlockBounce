@@ -18,7 +18,7 @@ namespace Block_bounce
         public int timer, initialTimer;
         public int currentLevel;
         public Rectangle endArea;
-        public bool hasHitSpike;
+        public bool hasHitSpike, isColliding;
         public Player p;
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
@@ -50,8 +50,13 @@ namespace Block_bounce
             {
                 if (p.boundingBox.isOnTopOf(plat.boundingBox))
                 {
-                    p.velocity.Y = 0f;
+                    p.velocity.Y = 0;
                     p.hasJumped = false;
+                }
+
+                if (p.boundingBox.Y - 20 >= (plat.boundingBox.Y))
+                {
+                    isColliding = true;
                 }
 
                 else if (p.boundingBox.hasHitBottomOf(plat.boundingBox))
@@ -66,6 +71,12 @@ namespace Block_bounce
                     p.velocity.X = 0;
                     p.playerPosition.X -= 1;
                 }
+
+                else if (p.boundingBox.hasHitRightOf(plat.boundingBox))
+                {
+                    p.velocity.X = 0;
+                    p.playerPosition.X += 1;
+                }
             }
 
             // Reset player to start if hits spike
@@ -76,6 +87,7 @@ namespace Block_bounce
                     p.velocity.Y = 0;
                     hasHitSpike = true;
                 }
+
             // Stops sound playing twice if player hits more than 1 spike 
             if (hasHitSpike == true)
             {

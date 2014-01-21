@@ -16,7 +16,7 @@ namespace Block_bounce
         public Texture2D playerTexture;
         public Vector2 playerPosition;
         public bool playerIsAlive;
-        public int gameOverStateChange, initialTimer;
+        public int initialTimer;
         public Rectangle boundingBox;
         public float playerSpeed, gravForce, terminalVelocity;
 
@@ -32,14 +32,13 @@ namespace Block_bounce
         public Player(Texture2D newTexture, Vector2 newPosition)
         {
             playerTexture = newTexture;
-            hasJumped = true;
+            hasJumped = false;
             playerPosition = newPosition;
-            terminalVelocity = 6f;
+            terminalVelocity = 5f;
             initialTimer = 0;
             gravForce = 0.5f;
 
             playerSpeed = 5f;
-            gameOverStateChange = 0;
             playerIsAlive = true;            
         }
 
@@ -100,22 +99,16 @@ namespace Block_bounce
             else velocity.X = 0f;
 
             // Begin jump
-            if ((keyState.IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) && hasJumped == false && initialTimer >= 10)
+            if ((keyState.IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) && hasJumped == false)
             {
-                playerPosition.Y -= 10f;
-                velocity.Y = -10f;
+                playerPosition.Y -= 10;
+                velocity.Y = -10;
                 hasJumped = true;
             }
 
 
             float i = 1;
-            velocity.Y += gravForce * i;
-            
-
-            if (playerPosition.Y + playerTexture.Height >= Game1.screenHeight - 5)
-            {
-                hasJumped = false;
-            }
+            velocity.Y += gravForce * i;           
 
             // Make sure player stays in screen bounds
             #region

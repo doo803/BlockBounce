@@ -258,7 +258,7 @@ namespace Block_bounce
 
 static class RectangleHelper
 {
-    const int penetrationMargin = 6;
+    const int penetrationMargin = 5;
     public static bool isOnTopOf(this Rectangle r1, Rectangle r2)
     {
         return (r1.Bottom >= r2.Top - penetrationMargin &&
@@ -279,6 +279,14 @@ static class RectangleHelper
     {
         return (r1.Right >= r2.Left - 4 &&
             r1.Right <= r2.Left &&
+            r1.Bottom >= r2.Top + 5 &&
+            r1.Top <= r2.Bottom - 5);
+    }
+
+    public static bool hasHitRightOf(this Rectangle r1, Rectangle r2)
+    {
+        return (r1.Left >= r2.Right - 4 &&
+            r1.Left <= r2.Right &&
             r1.Bottom >= r2.Top + 5 &&
             r1.Top <= r2.Bottom - 5);
     }
