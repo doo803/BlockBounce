@@ -133,13 +133,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gameover\gameover.png">
-      <Name>gameover</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="audio\level1music.mp3">
       <Name>level1music</Name>
       <Importer>Mp3Importer</Importer>
@@ -181,13 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="level\1\background.png">
-      <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="level\default\background.png">
       <Name>background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

@@ -13,6 +13,7 @@ namespace Block_bounce
 {
     public class Playing
     {
+        public BaseLevel baseLevel = new BaseLevel();
         public levels.level1 l1 = new levels.level1();
         public levels.level2 l2 = new levels.level2();
         public levels.level3 l3 = new levels.level3();
@@ -35,6 +36,9 @@ namespace Block_bounce
         // Load Content
         public void LoadContent(ContentManager Content)
         {
+            // Load Content from BaseLevel
+            baseLevel.LoadContent(Content);
+
             // Load Content from level1
             l1.LoadContent(Content); 
            

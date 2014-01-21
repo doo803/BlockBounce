@@ -27,7 +27,6 @@ namespace Block_bounce
             Playing,
             Pause,
             Credits,
-            Gameover
         }
 
         // Set first state
@@ -39,7 +38,6 @@ namespace Block_bounce
         Pause pause = new Pause();
         Credits credits = new Credits();
         SoundManager sm = new SoundManager();
-        Gameover gameover = new Gameover();
 
         public Game1()
         {
@@ -76,8 +74,6 @@ namespace Block_bounce
             // Load content from soundmanager
             sm.LoadContent(Content);
 
-            // Load content from gameover
-            gameover.LoadContent(Content);
 
         }
 
@@ -201,23 +197,6 @@ namespace Block_bounce
                     }
                     #endregion
 
-                case State.Gameover:
-                    #region
-                    {
-                        if (keyState.IsKeyDown(Keys.Escape))
-                        {
-                            gameState = State.Menu;
-                            pause.pauseVal = 0;
-                            menu.menuVal = 0;
-                            menu.enterReset = 0; // Removes problem with enter held down instantly selecting option in menu screen
-                            play.playerPosition = new Vector2(10, Game1.screenHeight - 25);
-                            pause.selection = 1;
-                            MediaPlayer.Stop();
-                            play.playerIsAlive = true;
-                        }
-                        break;
-                    }
-                    #endregion
             }
 
             base.Update(gameTime);           
@@ -268,15 +247,6 @@ namespace Block_bounce
                 case State.Credits:
                     {
                         credits.Draw(spriteBatch);
-                        break;
-                    }
-                #endregion
-
-                // DRAWING GAMEOVER STATE
-                #region
-                case State.Gameover:
-                    {
-                        gameover.Draw(spriteBatch);
                         break;
                     }
                 #endregion

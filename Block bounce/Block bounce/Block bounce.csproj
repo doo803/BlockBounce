@@ -107,8 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseLevel.cs" />
     <Compile Include="Credits.cs" />
-    <Compile Include="Gameover.cs" />
     <Compile Include="levels\level1.cs" />
     <Compile Include="levels\level2.cs" />
     <Compile Include="levels\level3.cs" />
