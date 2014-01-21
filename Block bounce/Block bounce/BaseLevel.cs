@@ -72,7 +72,7 @@ namespace Block_bounce
             foreach (Spikes sp in spikeList)
                 if (p.boundingBox.Intersects(sp.boundingBox))
                 {
-                    p.playerPosition = new Vector2(0, Game1.screenHeight - 475);
+                    p.playerPosition = startPos;
                     p.velocity.Y = 0;
                     hasHitSpike = true;
                 }

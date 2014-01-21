@@ -40,8 +40,7 @@ namespace Block_bounce
         SoundManager sm = new SoundManager();
 
         public Game1()
-        {
-            
+        {           
             graphics = new GraphicsDeviceManager(this);
             this.Window.Title = "Block bounce";
             Content.RootDirectory = "Content";

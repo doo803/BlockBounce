@@ -19,31 +19,34 @@ namespace Block_bounce.levels
 
         // Constructor
         public level2()
-        {            
-            timer = 0;
-            initialTimer = 0;
+        {
+            startPos = new Vector2(0, Game1.screenHeight - 365 - 20);
         }
 
         // Load Content
         public override void LoadContent(ContentManager Content)
         {
+            base.LoadContent(Content);
+
+            // Set level-specific variables
+            #region
             endArea = new Rectangle(880, Game1.screenHeight - 30, 20, 30);
+
             currentLevel = 2;
-
+           
             background = Content.Load<Texture2D>("level/2/background");
-            sm.LoadContent(Content);
-            endAreaTexture = Content.Load<Texture2D>("level/redpixel");
 
-            // **CHANGE THE VECTOR2 PER LEVEL
-            p = new Player(Content.Load<Texture2D>("player/playertexture"), new Vector2(0, Game1.screenHeight - 365 - 20));
-            
-            // **CHANGE THESE PER LEVEL
+            #endregion
+
+            // Begin level design
+            #region
             // Platforms
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/900platform10"), new Vector2(0, Game1.screenHeight - 10)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(600, Game1.screenHeight - 95)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(400, Game1.screenHeight - 185)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(200, Game1.screenHeight - 275)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(0, Game1.screenHeight - 365)));           
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(0, Game1.screenHeight - 365)));
+            #endregion
         }
 
         // Draw ** Use if drawing non inherited objects (e.g non-default background) **

@@ -15,6 +15,12 @@ namespace Block_bounce.levels
     // **CHANGE THIS PER LEVEL
     public class level3 : BaseLevel
     {
+        // Constructor
+        public level3()
+        {
+            startPos = new Vector2(0, Game1.screenHeight - 30);
+        }
+
         // Load Content
         public override void LoadContent(ContentManager Content)
         {
@@ -25,8 +31,6 @@ namespace Block_bounce.levels
             endArea = new Rectangle(880, Game1.screenHeight - 455, 20, 20);
 
             currentLevel = 3;
-
-            startPos = new Vector2(0, Game1.screenHeight - 30);
 
             #endregion
 

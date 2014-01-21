@@ -16,6 +16,12 @@ namespace Block_bounce.levels
     {
         private Texture2D background;
 
+        // Constructor
+        public level4()
+        {
+            startPos = new Vector2(0, Game1.screenHeight - 475);
+        }
+
         // Load Content
         public override void LoadContent(ContentManager Content)
         {
@@ -23,8 +29,6 @@ namespace Block_bounce.levels
 
             // Set level-specific variables
             #region
-            startPos = new Vector2(0, Game1.screenHeight - 475);
-
             endArea = new Rectangle(880, Game1.screenHeight - 30, 20, 20);
 
             currentLevel = 4;
