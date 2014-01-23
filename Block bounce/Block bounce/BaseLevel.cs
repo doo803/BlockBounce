@@ -18,12 +18,13 @@ namespace Block_bounce
         public int timer, initialTimer;
         public int currentLevel;
         public Rectangle endArea;
-        public bool hasHitSpike, isColliding;
+        public bool hasHitSpike, isColliding, isOnConveyor;
         public Player p;
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
+        public List<Conveyor> conveyorList = new List<Conveyor>();
         public Vector2 startPos;
         
         // Constructor
@@ -48,6 +49,7 @@ namespace Block_bounce
         public virtual void Update(GameTime gameTime)
         {
             foreach (Platform plat in platformList)
+            #region
             {
                 if (p.boundingBox.isOnTopOf(plat.boundingBox))
                 {
@@ -83,28 +85,47 @@ namespace Block_bounce
                     }
                 }               
             }
+            #endregion
 
             foreach (MovingSpike ms in movingSpikeList)
+            #region
             {
                 ms.Update(gameTime);
             }
+            #endregion
 
-            // Reset player to start if hits spike
             foreach (Spikes sp in spikeList)
+            #region
                 if (p.boundingBox.Intersects(sp.boundingBox))
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
                     hasHitSpike = true;
                 }
+                #endregion
 
             foreach (MovingSpike ms in movingSpikeList)
+            #region
                 if (p.boundingBox.Intersects(ms.boundingBox))
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
                     hasHitSpike = true;
                 }
+            #endregion
+
+            foreach (Conveyor c in conveyorList)
+            #region
+            {
+                c.Update(gameTime);
+                if (p.boundingBox.isOnTopOf(c.boundingBox))
+                {
+                    p.velocity.X += c.speedMod;
+                }
+            }
+
+            
+            #endregion
 
             // Stops sound playing twice if player hits more than 1 spike 
             if (hasHitSpike == true)
@@ -141,6 +162,11 @@ namespace Block_bounce
             foreach (MovingSpike ms in movingSpikeList)
             {
                 ms.Draw(spriteBatch);
+            }
+
+            foreach (Conveyor c in conveyorList)
+            {
+                c.Draw(spriteBatch);
             }
 
             p.Draw(spriteBatch);
