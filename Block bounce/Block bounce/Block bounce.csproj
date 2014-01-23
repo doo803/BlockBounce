@@ -115,6 +115,8 @@
     <Compile Include="levels\level4.cs" />
     <Compile Include="levels\level5.cs" />
     <Compile Include="levels\level6.cs" />
+    <Compile Include="levels\level7.cs" />
+    <Compile Include="MovingSpike.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Playing.cs" />
     <Compile Include="Menu.cs" />
@@ -125,7 +127,6 @@
     <Compile Include="Game1.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Spikes.cs" />
-    <Compile Include="Wall.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -20,6 +20,7 @@ namespace Block_bounce
         public levels.level4 l4 = new levels.level4();
         public levels.level5 l5 = new levels.level5();
         public levels.level6 l6 = new levels.level6();
+        public levels.level7 l7 = new levels.level7();
 
         public int currentLevel;
         public Vector2 playerPosition;
@@ -55,8 +56,11 @@ namespace Block_bounce
             // Load Content from level5
             l5.LoadContent(Content);
 
-            // Load content from level6
+            // Load Content from level6
             l6.LoadContent(Content);
+
+            // Load Content from level7
+            l7.LoadContent(Content);
         }
 
         // Update
@@ -111,6 +115,12 @@ namespace Block_bounce
                         l6.Update(gameTime);
                         break;
                     }
+                case 7:
+                    {
+                        currentLevel = l7.currentLevel;
+                        l7.Update(gameTime);
+                        break;
+                    }
                 #endregion
             }
         }                
@@ -154,6 +164,11 @@ namespace Block_bounce
                 case 6:
                     {
                         l6.Draw(spriteBatch);
+                        break;
+                    }
+                case 7:
+                    {
+                        l7.Draw(spriteBatch);
                         break;
                     }
                 #endregion

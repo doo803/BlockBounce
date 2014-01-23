@@ -124,6 +124,14 @@ namespace Block_bounce
                 playerPosition.X = Game1.screenWidth - playerTexture.Width;
             }
 
+            // Stop player going off top of screen 
+            if ((playerPosition.Y) <= 0)
+            {
+                velocity.Y = 0;
+                playerPosition.Y += 5;
+                hasJumped = true;
+            }
+
             #endregion
 
         }

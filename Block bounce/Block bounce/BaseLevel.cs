@@ -23,6 +23,7 @@ namespace Block_bounce
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<Spikes> spikeList = new List<Spikes>();
+        public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
         public Vector2 startPos;
         
         // Constructor
@@ -44,7 +45,7 @@ namespace Block_bounce
         }
 
         // Update
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             foreach (Platform plat in platformList)
             {
@@ -68,20 +69,37 @@ namespace Block_bounce
 
                 if (p.boundingBox.hasHitLeftOf(plat.boundingBox))
                 {
-                    p.velocity.X = 0;
-                    p.playerPosition.X -= 1;
+                    if (p.velocity.X >= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
                 }
 
                 else if (p.boundingBox.hasHitRightOf(plat.boundingBox))
                 {
-                    p.velocity.X = 0;
-                    p.playerPosition.X += 1;
-                }
+                    if (p.velocity.X <= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }               
+            }
+
+            foreach (MovingSpike ms in movingSpikeList)
+            {
+                ms.Update(gameTime);
             }
 
             // Reset player to start if hits spike
             foreach (Spikes sp in spikeList)
                 if (p.boundingBox.Intersects(sp.boundingBox))
+                {
+                    p.playerPosition = startPos;
+                    p.velocity.Y = 0;
+                    hasHitSpike = true;
+                }
+
+            foreach (MovingSpike ms in movingSpikeList)
+                if (p.boundingBox.Intersects(ms.boundingBox))
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
@@ -118,6 +136,11 @@ namespace Block_bounce
             foreach (Spikes sp in spikeList)
             {
                 sp.Draw(spriteBatch);
+            }
+
+            foreach (MovingSpike ms in movingSpikeList)
+            {
+                ms.Draw(spriteBatch);
             }
 
             p.Draw(spriteBatch);
