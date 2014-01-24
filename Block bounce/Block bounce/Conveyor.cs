@@ -34,7 +34,7 @@ namespace Block_bounce
 
         public void Update(GameTime gameTime)
         {
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, 20);
 
             if(direction == "left")
             {

@@ -118,7 +118,7 @@ namespace Block_bounce
             #region
             {
                 c.Update(gameTime);
-                if (p.boundingBox.isOnTopOf(c.boundingBox))
+                if (p.boundingBox.isOnTopOf(c.boundingBox) || p.boundingBox.Intersects(c.boundingBox))
                 {
                     p.velocity.X += c.speedMod;
                 }

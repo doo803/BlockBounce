@@ -117,6 +117,7 @@
     <Compile Include="levels\level5.cs" />
     <Compile Include="levels\level6.cs" />
     <Compile Include="levels\level7.cs" />
+    <Compile Include="levels\level8.cs" />
     <Compile Include="MovingSpike.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Playing.cs" />
