@@ -14,23 +14,25 @@ namespace Block_bounce
 {
     public class BaseLevel
     {
-        public Texture2D endAreaTexture;
+        public Texture2D endAreaTexture, bulletLeft, bulletRight;
         public int timer, initialTimer;
         public int currentLevel;
         public Rectangle endArea;
-        public bool hasHitSpike, isColliding, isOnConveyor;
+        public bool hasDied, isColliding, isOnConveyor;
         public Player p;
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
+        public List<Shooter> shooterList = new List<Shooter>();
+        public List<Bullet> bulletList = new List<Bullet>();
         public Vector2 startPos;
         
         // Constructor
         public BaseLevel()
         {
-            hasHitSpike = false;
+            hasDied = false;
             timer = 0;
             initialTimer = 0;
         }
@@ -40,6 +42,9 @@ namespace Block_bounce
         {
             sm.LoadContent(Content);
             endAreaTexture = Content.Load<Texture2D>("level/redpixel");
+
+            bulletLeft = Content.Load<Texture2D>("level/shooter/bulletleft");
+            bulletRight = Content.Load<Texture2D>("level/shooter/bulletright");
 
             // **CHANGE THE VECTOR2 PER LEVEL
             p = new Player(Content.Load<Texture2D>("player/playertexture"), startPos);
@@ -100,7 +105,7 @@ namespace Block_bounce
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
-                    hasHitSpike = true;
+                    hasDied = true;
                 }
                 #endregion
 
@@ -110,7 +115,7 @@ namespace Block_bounce
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
-                    hasHitSpike = true;
+                    hasDied = true;
                 }
             #endregion
 
@@ -127,11 +132,58 @@ namespace Block_bounce
             
             #endregion
 
+            foreach (Shooter sh in shooterList)
+            #region
+            {
+                sh.Update(gameTime);
+
+                if (sh.makeBullet == true)
+                {
+                    if (sh.direction == "left")
+                    {
+                        bulletList.Add(new Bullet(bulletLeft, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 4, sh.position.Y + sh.texture.Height / 2 - 3)));
+                    }
+
+                    else if (sh.direction == "right")
+                    {
+                        bulletList.Add(new Bullet(bulletRight, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 4, sh.position.Y + sh.texture.Height / 2 - 3)));
+                    }
+
+                    sh.makeBullet = false;
+                }
+
+                // Remove bullets
+                for (int i = 0; i < bulletList.Count; i++)
+                {
+                    if (!bulletList[i].isVisible)
+                    {
+                        bulletList.RemoveAt(i);
+                        i--;
+                    }
+                }
+               
+            }
+            #endregion
+
+            foreach (Bullet b in bulletList)
+            #region
+            {
+                b.Update(gameTime);
+
+                if (p.boundingBox.Intersects(b.boundingBox))
+                {
+                    p.playerPosition = startPos;
+                    p.velocity.Y = 0;
+                    hasDied = true;
+                }
+            }
+            #endregion
+
             // Stops sound playing twice if player hits more than 1 spike 
-            if (hasHitSpike == true)
+            if (hasDied == true)
             {
                 sm.playerDieSound.Play();
-                hasHitSpike = false;
+                hasDied = false;
             }
 
             // End position
@@ -169,6 +221,16 @@ namespace Block_bounce
                 c.Draw(spriteBatch);
             }
 
+            foreach (Shooter sh in shooterList)
+            {
+                sh.Draw(spriteBatch);
+            }
+
+            foreach (Bullet b in bulletList)
+            {
+                b.Draw(spriteBatch);
+            }
+
             p.Draw(spriteBatch);
         }
 
@@ -198,6 +260,7 @@ namespace Block_bounce
                 initialTimer = 20;
             }
         }
+
     }
 }
 

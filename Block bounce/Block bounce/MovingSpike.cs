@@ -28,8 +28,7 @@ namespace Block_bounce
             leftLimit = newLeftLimit;
             rightLimit = newRightLimit;
             movingRight = true;
-            movingLeft = false;
-            isVisible = false;           
+            movingLeft = false;      
             speed = 5;
         }
 
