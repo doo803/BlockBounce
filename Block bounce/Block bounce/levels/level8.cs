@@ -76,9 +76,7 @@ namespace Block_bounce.levels
 
             conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/100conveyorright20"), new Vector2(197, Game1.screenHeight - 142), "right"));
             conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/200conveyorright20"), new Vector2(597, Game1.screenHeight - 142), "right"));
-
-            // Floor
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/900platform10"), new Vector2(0, Game1.screenHeight - 10)));
+           
         }
     }
 }

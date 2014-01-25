@@ -26,7 +26,7 @@ namespace Block_bounce
             texture = newTexture;
             direction = newDirection;
             isVisible = true;
-            speed = 10;
+            speed = 6;
         }
 
         public void LoadContent(ContentManager Content)

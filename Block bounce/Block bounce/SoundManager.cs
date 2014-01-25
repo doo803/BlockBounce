@@ -13,7 +13,7 @@ namespace Block_bounce
 {
     public class SoundManager
     {
-        public SoundEffect jumpSound, click, pauseSound, resumeSound, playerDieSound;
+        public SoundEffect jumpSound, click, pauseSound, resumeSound, playerDieSound, shotSound;
         public Song level1Music, menuMusic;
         public int volumeTimer, volumeTimer2;
         public float volume;
@@ -23,7 +23,7 @@ namespace Block_bounce
         {
             volume = 0.0f;
             volumeTimer = 0;
-            volumeTimer2 = 0;
+            volumeTimer2 = 0;            
         }
 
         // Load content
@@ -36,12 +36,14 @@ namespace Block_bounce
             jumpSound = Content.Load<SoundEffect>("audio/jump");
             menuMusic = Content.Load<Song>("audio/menumusic");
             playerDieSound = Content.Load<SoundEffect>("audio/playerdie");
+            shotSound = Content.Load<SoundEffect>("audio/shot");
         }
 
         // Update
         public void Update(GameTime gameTime)
         {
             MediaPlayer.Volume = (float)volume;
+            //SoundEffect.MasterVolume = (float)volume;
 
             KeyboardState keyState = Keyboard.GetState();
 

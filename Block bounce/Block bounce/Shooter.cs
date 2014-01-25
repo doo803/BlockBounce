@@ -18,6 +18,7 @@ namespace Block_bounce
         public string direction;
         public int shootTimer, interval;
         public bool makeBullet;
+        public Rectangle boundingBox;
 
         public Shooter(Texture2D newTexture, Vector2 newPosition, string newDirection, int newInterval)
         {
@@ -40,7 +41,9 @@ namespace Block_bounce
             {
                 makeBullet = true;
                 shootTimer = 0;
-            }            
+            }
+
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)

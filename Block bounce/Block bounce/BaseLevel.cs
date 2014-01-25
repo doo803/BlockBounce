@@ -48,6 +48,9 @@ namespace Block_bounce
 
             // **CHANGE THE VECTOR2 PER LEVEL
             p = new Player(Content.Load<Texture2D>("player/playertexture"), startPos);
+
+            // Floor
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/900platform10"), new Vector2(0, Game1.screenHeight - 10)));
         }
 
         // Update
@@ -139,6 +142,8 @@ namespace Block_bounce
 
                 if (sh.makeBullet == true)
                 {
+                    //sm.shotSound.Play();
+
                     if (sh.direction == "left")
                     {
                         bulletList.Add(new Bullet(bulletLeft, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 4, sh.position.Y + sh.texture.Height / 2 - 3)));
@@ -161,6 +166,40 @@ namespace Block_bounce
                         i--;
                     }
                 }
+
+                if (p.boundingBox.isOnTopOf(sh.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.hasJumped = false;
+                }
+
+                if (p.boundingBox.Y - 20 >= (sh.boundingBox.Y))
+                {
+                    isColliding = true;
+                }
+
+                else if (p.boundingBox.hasHitBottomOf(sh.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.playerPosition.Y += 5;
+                    p.hasJumped = true;
+                }
+
+                if (p.boundingBox.hasHitLeftOf(sh.boundingBox))
+                {
+                    if (p.velocity.X >= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }
+
+                else if (p.boundingBox.hasHitRightOf(sh.boundingBox))
+                {
+                    if (p.velocity.X <= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }
                
             }
             #endregion
@@ -175,6 +214,27 @@ namespace Block_bounce
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
                     hasDied = true;
+                }
+
+                foreach (Platform plat in platformList)
+                {
+                    if (b.boundingBox.Intersects(plat.boundingBox))
+                    {
+                        b.isVisible = false;
+                    }
+                }
+
+                foreach (Shooter sh in shooterList)
+                {
+                    if (b.boundingBox.hasHitLeftOf(sh.boundingBox) && sh.direction == "right")
+                    {
+                        b.isVisible = false;
+                    }
+
+                    if (b.boundingBox.hasHitRightOf(sh.boundingBox) && sh.direction == "left")
+                    {
+                        b.isVisible = false;
+                    }                
                 }
             }
             #endregion
