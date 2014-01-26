@@ -22,6 +22,7 @@ namespace Block_bounce
         public Player p;
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
+        public List<MovingPlatform> movingPlatformList = new List<MovingPlatform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
@@ -59,6 +60,7 @@ namespace Block_bounce
             foreach (Platform plat in platformList)
             #region
             {
+                
                 if (p.boundingBox.isOnTopOf(plat.boundingBox))
                 {
                     p.velocity.Y = 0;
@@ -92,6 +94,71 @@ namespace Block_bounce
                         p.velocity.X = 0;
                     }
                 }               
+            }
+            #endregion
+
+            foreach (MovingPlatform mplat in movingPlatformList)
+            #region
+            {
+                mplat.Update(gameTime);
+
+                if (p.boundingBox.isOnTopOf(mplat.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.hasJumped = false;
+                }
+
+                if (p.boundingBox.Y - 20 >= (mplat.boundingBox.Y))
+                {
+                    isColliding = true;
+                }
+
+                else if (p.boundingBox.hasHitBottomOf(mplat.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.playerPosition.Y += 5;
+                    p.hasJumped = true;
+                }
+
+                if (p.boundingBox.hasHitLeftOf(mplat.boundingBox))
+                {
+                    if (p.velocity.X >= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }
+
+                else if (p.boundingBox.hasHitRightOf(mplat.boundingBox))
+                {
+                    if (p.velocity.X <= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }
+
+                // Move player with platform
+                if (p.boundingBox.Intersects(mplat.boundingBox) || p.boundingBox.isOnTopOf(mplat.boundingBox))
+                {
+                    if (mplat.movingLeft == true)
+                    {
+                        p.velocity.X -= mplat.playerSpeedMod;
+                    }
+
+                    else if (mplat.movingRight == true)
+                    {
+                        p.velocity.X += mplat.playerSpeedMod;
+                    }
+
+                    if (mplat.movingUp == true)
+                    {
+                        p.velocity.Y += mplat.playerSpeedMod;
+                    }
+
+                    else if (mplat.movingDown == true)
+                    {
+                        p.velocity.Y -= mplat.playerSpeedMod;
+                    }
+                }
             }
             #endregion
 
@@ -264,6 +331,11 @@ namespace Block_bounce
             foreach (Platform plat in platformList)
             {
                 plat.Draw(spriteBatch);
+            }
+
+            foreach (MovingPlatform mplat in movingPlatformList)
+            {
+                mplat.Draw(spriteBatch);
             }
 
             foreach (Spikes sp in spikeList)

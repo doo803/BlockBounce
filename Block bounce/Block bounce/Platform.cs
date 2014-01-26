@@ -14,8 +14,8 @@ namespace Block_bounce
 {
     public class Platform
     {
-        Texture2D texture;
-        Vector2 position;
+        public Texture2D texture;
+        public Vector2 position;
         public Rectangle boundingBox;
 
         // Constructor
@@ -23,8 +23,12 @@ namespace Block_bounce
         {
             texture = newTexture;
             position = newPosition;
-
             boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+            
         }
 
         // Draw
