@@ -43,7 +43,7 @@ namespace Block_bounce
         public void Update(GameTime gameTime)
         {
             MediaPlayer.Volume = (float)volume;
-            //SoundEffect.MasterVolume = (float)volume;
+            SoundEffect.MasterVolume = (float)volume;
 
             KeyboardState keyState = Keyboard.GetState();
 

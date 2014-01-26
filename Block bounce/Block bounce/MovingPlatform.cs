@@ -38,13 +38,13 @@ namespace Block_bounce
         {
             boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
 
-            if (position.X <= leftLimit.X)
+            if (position.X < leftLimit.X)
             {
                 movingRight = true;
                 movingLeft = false;
             }
 
-            if (position.X >= rightLimit.X)
+            if (position.X > rightLimit.X)
             {
                 movingRight = false;
                 movingLeft = true;

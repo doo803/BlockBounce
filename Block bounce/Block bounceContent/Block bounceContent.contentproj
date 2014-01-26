@@ -215,13 +215,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level\spike\leftspikerow5.png">
-      <Name>leftspikerow5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="level\wall\20wall600.png">
       <Name>20wall600</Name>
       <Importer>TextureImporter</Importer>
@@ -354,6 +347,13 @@
   <ItemGroup>
     <Compile Include="level\platform\20platform20.png">
       <Name>20platform20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="level\spike\floatingspike.png">
+      <Name>floatingspike</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
