@@ -82,8 +82,6 @@ namespace Block_bounce
         // Update
         public void Update(GameTime gameTime)
         {
-            playerPosition = new Vector2(l1.p.playerPosition.X, l1.p.playerPosition.Y);
-            playerIsAlive = l1.p.playerIsAlive;
 
             // Allow dev mode tools
             DevTools();
@@ -94,13 +92,33 @@ namespace Block_bounce
                 #region
                 case 1:
                     {
-                        currentLevel = l1.currentLevel;
+                        // Player alive check
+                        #region
+                        if (l1.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l1.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
+                        currentLevel = l1.currentLevel;                       
                         l1.Update(gameTime);
                         break;
                     }
 
                 case 2:
                     {
+                        // Player alive check
+                        #region
+                        if (l2.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l2.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l2.currentLevel;
                         l2.Update(gameTime);
                         break;
@@ -108,6 +126,16 @@ namespace Block_bounce
 
                 case 3:
                     {
+                        // Player alive check
+                        #region
+                        if (l3.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l3.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l3.currentLevel;
                         l3.Update(gameTime);
                         break;
@@ -115,48 +143,128 @@ namespace Block_bounce
 
                 case 4:
                     {
+                        // Player alive check
+                        #region
+                        if (l4.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l4.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l4.currentLevel;
                         l4.Update(gameTime);
                         break;
                     }
                 case 5:
                     {
+                        // Player alive check
+                        #region
+                        if (l5.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l5.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l5.currentLevel;
                         l5.Update(gameTime);
                         break;
                     }
                 case 6:
                     {
+                        // Player alive check
+                        #region
+                        if (l6.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l6.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l6.currentLevel;
                         l6.Update(gameTime);
                         break;
                     }
                 case 7:
                     {
+                        // Player alive check
+                        #region
+                        if (l7.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l7.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l7.currentLevel;
                         l7.Update(gameTime);
                         break;
                     }
                 case 8:
                     {
+                        // Player alive check
+                        #region
+                        if (l8.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l8.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l8.currentLevel;
                         l8.Update(gameTime);
                         break;
                     }
                 case 9:
                     {
+                        // Player alive check
+                        #region
+                        if (l9.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l9.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l9.currentLevel;
                         l9.Update(gameTime);
                         break;
                     }
                 case 10:
                     {
+                        // Player alive check
+                        #region
+                        if (l10.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l10.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l10.currentLevel;
                         l10.Update(gameTime);
                         break;
                     }
                 case 11:
                     {
+                        // Player alive check
+                        #region
+                        if (l11.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l11.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
                         currentLevel = l11.currentLevel;
                         l11.Update(gameTime);
                         break;
@@ -270,5 +378,6 @@ namespace Block_bounce
                 i = 0;
             }
         }
+
     }
 }

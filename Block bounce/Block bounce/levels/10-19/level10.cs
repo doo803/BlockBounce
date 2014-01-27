@@ -40,7 +40,7 @@ namespace Block_bounce.levels
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(400, 260)));
 
             // Moving platforms
-            movingPlatformList.Add(new MovingPlatform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(800, 140), 4, 
+            movingPlatformList.Add(new MovingPlatform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(800, 140), 0, 4, 
                 new Vector2 (40, 0), new Vector2(700, 0), new Vector2(0, 140), new Vector2(0, 140)));
 
             // Spikes
@@ -69,7 +69,7 @@ namespace Block_bounce.levels
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(500, 500)));
 
             // Moving platforms
-            movingPlatformList.Add(new MovingPlatform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(400, 420), 4,
+            movingPlatformList.Add(new MovingPlatform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(400, 420), 0, 4,
                 new Vector2(140, 0), new Vector2(800, 0), new Vector2(0, 420), new Vector2(0, 420)));
 
             // Spikes

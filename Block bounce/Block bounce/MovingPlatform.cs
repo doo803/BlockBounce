@@ -14,15 +14,17 @@ namespace Block_bounce
     public class MovingPlatform : Platform
     {
         public bool movingRight, movingLeft, movingDown, movingUp;
-        public int speed, playerSpeedMod;
+        public int vertSpeed, horSpeed, playerSpeedModHor, playerSpeedModVert;
         Vector2 leftLimit, rightLimit, upLimit, downLimit;
 
-        public MovingPlatform(Texture2D newTexture, Vector2 newPosition, int newSpeed, 
+        public MovingPlatform(Texture2D newTexture, Vector2 newPosition, 
+            int newVertSpeed, int newHorSpeed,
             Vector2 newLeftLimit, Vector2 newRightLimit, 
-            Vector2 newUpLimit, Vector2 newDownLimit)
+            Vector2 newDownLimit, Vector2 newUpLimit)
             : base(newTexture, newPosition)
         {
-            speed = newSpeed;
+            vertSpeed = newVertSpeed;
+            horSpeed = newHorSpeed;
             leftLimit = newLeftLimit;
             rightLimit = newRightLimit;
             upLimit = newUpLimit;
@@ -30,8 +32,9 @@ namespace Block_bounce
             movingRight = true;
             movingLeft = false;
             movingDown = false;
-            movingUp = false;
-            playerSpeedMod = speed;
+            movingUp = true;
+            playerSpeedModHor = horSpeed;
+            playerSpeedModVert = vertSpeed;
         }
 
         public override void Update(GameTime gameTime)
@@ -50,13 +53,13 @@ namespace Block_bounce
                 movingLeft = true;
             }
 
-            if (position.Y < downLimit.Y)
+            if (position.Y > downLimit.Y)
             {
                 movingUp = true;
                 movingDown = false;
             }
 
-            if (position.Y > upLimit.Y)
+            if (position.Y < upLimit.Y)
             {
                 movingUp = false;
                 movingDown = true;
@@ -64,12 +67,22 @@ namespace Block_bounce
 
             if (movingLeft == true)
             {
-                position.X -= speed;
+                position.X -= horSpeed;
             }
 
             if (movingRight == true)
             {
-                position.X += speed;
+                position.X += horSpeed;
+            }
+
+            if (movingUp == true)
+            {
+                position.Y -= vertSpeed;
+            }
+
+            if (movingDown == true)
+            {
+                position.Y += vertSpeed;
             }
         }
 

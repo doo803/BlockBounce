@@ -16,10 +16,11 @@ namespace Block_bounce
     {
         public Texture2D endAreaTexture, bulletLeft, bulletRight;
         public int timer, initialTimer;
-        public int currentLevel;
+        public int currentLevel, i;
         public Rectangle endArea;
         public bool hasDied, isColliding, isOnConveyor;
         public Player p;
+        public HUD hud = new HUD();
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<MovingPlatform> movingPlatformList = new List<MovingPlatform>();
@@ -36,6 +37,7 @@ namespace Block_bounce
             hasDied = false;
             timer = 0;
             initialTimer = 0;
+            i = 0;
         }
 
         // Load Content
@@ -57,11 +59,13 @@ namespace Block_bounce
         // Update
         public virtual void Update(GameTime gameTime)
         {
+            initialTimer++;
+
             foreach (Platform plat in platformList)
             #region
             {
                 
-                if (p.boundingBox.isOnTopOf(plat.boundingBox))
+                if (p.boundingBox.isOnTopOf(plat.boundingBox) && p.velocity.Y >= 0)
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
@@ -141,22 +145,22 @@ namespace Block_bounce
                 {
                     if (mplat.movingLeft == true)
                     {
-                        p.velocity.X -= mplat.playerSpeedMod;
+                        p.velocity.X -= mplat.playerSpeedModHor;
                     }
 
                     else if (mplat.movingRight == true)
                     {
-                        p.velocity.X += mplat.playerSpeedMod;
+                        p.velocity.X += mplat.playerSpeedModHor;
                     }
 
                     if (mplat.movingUp == true)
                     {
-                        p.velocity.Y += mplat.playerSpeedMod;
+                        p.velocity.Y -= mplat.playerSpeedModVert;
                     }
 
                     else if (mplat.movingDown == true)
                     {
-                        p.velocity.Y -= mplat.playerSpeedMod;
+                        p.velocity.Y += mplat.playerSpeedModVert;
                     }
                 }
             }
@@ -311,7 +315,11 @@ namespace Block_bounce
             {
                 sm.playerDieSound.Play();
                 hasDied = false;
+                hud.deathCount += 1;
+                p.playerDied = true;
             }
+
+            hud.Update(gameTime);
 
             // End position
             if (p.boundingBox.Intersects(endArea))

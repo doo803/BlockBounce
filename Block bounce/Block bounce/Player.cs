@@ -15,7 +15,7 @@ namespace Block_bounce
     {
         public Texture2D playerTexture;
         public Vector2 playerPosition;
-        public bool playerIsAlive;
+        public bool playerIsAlive, playerDied;
         public int initialTimer;
         public Rectangle boundingBox;
         public float playerSpeed, gravForce, terminalVelocity;
@@ -48,7 +48,7 @@ namespace Block_bounce
             KeyboardState keyState = Keyboard.GetState();
 
             initialTimer++;
-
+           
             // Control volume
             #region
             sm.Update(gameTime);

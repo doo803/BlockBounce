@@ -38,6 +38,7 @@ namespace Block_bounce
         Pause pause = new Pause();
         Credits credits = new Credits();
         SoundManager sm = new SoundManager();
+        HUD hud = new HUD();
 
         public Game1()
         {           
@@ -73,6 +74,9 @@ namespace Block_bounce
             // Load content from soundmanager
             sm.LoadContent(Content);
 
+            // Load content from HUD
+            hud.LoadContent(Content);
+
 
         }
 
@@ -85,6 +89,8 @@ namespace Block_bounce
         {
             // Makes mouse visible
             IsMouseVisible = true;
+
+            hud.Update(gameTime);
 
             KeyboardState keyState = Keyboard.GetState();
 
@@ -144,7 +150,12 @@ namespace Block_bounce
                             pause.pauseVal = 0;
                             MediaPlayer.Pause();
                             sm.pauseSound.Play();
-                        }       
+                        }
+
+                        if (play.playerIsAlive == false)
+                        {
+                            hud.deathCount++;
+                        }
                  
                         break;
                     }
@@ -207,7 +218,7 @@ namespace Block_bounce
 
             spriteBatch.Begin();
             base.Draw(gameTime);
-
+           
             switch (gameState)
             {
                 // DRAWING MENU STATE   
@@ -223,9 +234,13 @@ namespace Block_bounce
                 #region
                 case State.Playing:
                     {
-                        // Draw level 1 background
+                        // Draw from playing
                         play.Draw(spriteBatch);
 
+                        // Draw from hud
+                        hud.Draw(spriteBatch);
+
+                        
                         break;
                     }
                 #endregion
@@ -269,7 +284,7 @@ static class RectangleHelper
 
     public static bool hasHitBottomOf(this Rectangle r1, Rectangle r2)
     {
-        return (r1.Top >= r2.Bottom - 8 &&
+        return (r1.Top >= r2.Bottom - 10 &&
             r1.Top <= r2.Bottom &&
             r1.Right >= r2.Left &&
             r1.Left <= r2.Right);
