@@ -25,6 +25,7 @@ namespace Block_bounce
         public levels.level9 l9 = new levels.level9();
         public levels.level10 l10 = new levels.level10();
         public levels.level11 l11 = new levels.level11();
+        public levels.level12 l12 = new levels.level12();
 
         public int currentLevel;
         public Vector2 playerPosition;
@@ -77,6 +78,9 @@ namespace Block_bounce
 
             // Load Content from level11
             l11.LoadContent(Content);
+
+            // Load Content from level12
+            l12.LoadContent(Content);
         }
 
         // Update
@@ -269,6 +273,22 @@ namespace Block_bounce
                         l11.Update(gameTime);
                         break;
                     }
+                case 12:
+                    {
+                        // Player alive check
+                        #region
+                        if (l12.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l12.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
+                        currentLevel = l12.currentLevel;
+                        l12.Update(gameTime);
+                        break;
+                    }  
                 #endregion
             }
         }                
@@ -280,7 +300,6 @@ namespace Block_bounce
 
             switch (currentLevel)
             {
-                // Draw when current level = 1
                 #region
                 case 1:
                     {
@@ -337,6 +356,11 @@ namespace Block_bounce
                 case 11:
                     {
                         l11.Draw(spriteBatch);
+                        break;
+                    }
+                case 12:
+                    {
+                        l12.Draw(spriteBatch);
                         break;
                     }
                 #endregion

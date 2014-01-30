@@ -21,7 +21,7 @@ namespace Block_bounce
         // Constructor
         public SoundManager()
         {
-            volume = 0.5f;
+            volume = 0.0f;
             volumeTimer = 0;
             volumeTimer2 = 0;            
         }

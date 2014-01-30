@@ -217,12 +217,12 @@ namespace Block_bounce
 
                     if (sh.direction == "left")
                     {
-                        bulletList.Add(new Bullet(bulletLeft, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 4, sh.position.Y + sh.texture.Height / 2 - 3)));
+                        bulletList.Add(new Bullet(bulletRight, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 8, sh.position.Y + sh.texture.Height / 2 - 8)));
                     }
 
                     else if (sh.direction == "right")
                     {
-                        bulletList.Add(new Bullet(bulletRight, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 4, sh.position.Y + sh.texture.Height / 2 - 3)));
+                        bulletList.Add(new Bullet(bulletLeft, sh.direction, new Vector2(sh.position.X + sh.texture.Width / 2 - 8, sh.position.Y + sh.texture.Height / 2 - 8)));
                     }
 
                     sh.makeBullet = false;
@@ -291,7 +291,7 @@ namespace Block_bounce
                 {
                     if (b.boundingBox.Intersects(plat.boundingBox))
                     {
-                        b.isVisible = false;
+                       b.isVisible = false;
                     }
                 }
 
@@ -361,16 +361,16 @@ namespace Block_bounce
                 c.Draw(spriteBatch);
             }
 
-            foreach (Shooter sh in shooterList)
-            {
-                sh.Draw(spriteBatch);
-            }
-
             foreach (Bullet b in bulletList)
             {
                 b.Draw(spriteBatch);
             }
 
+            foreach (Shooter sh in shooterList)
+            {
+                sh.Draw(spriteBatch);
+            }
+            
             p.Draw(spriteBatch);
         }
 
@@ -394,11 +394,6 @@ namespace Block_bounce
                 timer = 0;
             }
 
-            // Keep initialTimer from going over 20
-            if (initialTimer >= 20)
-            {
-                initialTimer = 20;
-            }
         }
 
     }

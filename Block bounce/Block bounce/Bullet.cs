@@ -15,10 +15,12 @@ namespace Block_bounce
     {
         string direction;
         public Texture2D texture;
-        public Rectangle boundingBox;
-        Vector2 position;
+        public Rectangle boundingBox, sourceRect;
+        Vector2 position, origin;
         int speed;
         public bool isVisible;
+        public int spriteWidth, spriteHeight, currentFrame;
+        public float timer, interval;
 
         public Bullet(Texture2D newTexture, string newDirection, Vector2 newPosition)
         {
@@ -27,6 +29,11 @@ namespace Block_bounce
             direction = newDirection;
             isVisible = true;
             speed = 6;
+            timer = 0f;
+            interval = 20f; // Change for animation speed, lower number = faster animation
+            currentFrame = 1;
+            spriteWidth = texture.Width;
+            spriteHeight = 15;
         }
 
         public void LoadContent(ContentManager Content)
@@ -36,7 +43,7 @@ namespace Block_bounce
 
         public void Update(GameTime gameTime)
         {
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, 15);
 
             if (direction == "left")
             {
@@ -53,11 +60,37 @@ namespace Block_bounce
             {
                 isVisible = false;
             }
+
+            // Animation
+            #region
+            // Increase the timer by the number of milliseconds since update was last called
+            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            // Check the time is more than the chosen interval
+            if (timer > interval)
+            {
+                // Show next frame
+                currentFrame++;
+
+                // Reset timer
+                timer = 0f;
+            }
+
+            // if we are on the last frame of animation, reset current frame to beginning of spritesheet
+            if (currentFrame >= 6)
+            {
+                currentFrame = 0;
+            }
+
+            sourceRect = new Rectangle(0, currentFrame * (spriteHeight + 1), spriteWidth, spriteHeight);
+            origin = new Vector2(0, 0);
+
+            #endregion
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White); 
+            spriteBatch.Draw(texture, position, sourceRect, Color.Red, 0f, origin, 1.0f, SpriteEffects.None, 0);
         }
     }
 }
