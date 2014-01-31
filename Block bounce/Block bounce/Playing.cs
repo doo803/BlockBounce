@@ -26,6 +26,7 @@ namespace Block_bounce
         public levels.level10 l10 = new levels.level10();
         public levels.level11 l11 = new levels.level11();
         public levels.level12 l12 = new levels.level12();
+        public levels.level13 l13 = new levels.level13();
 
         public int currentLevel;
         public Vector2 playerPosition;
@@ -81,6 +82,9 @@ namespace Block_bounce
 
             // Load Content from level12
             l12.LoadContent(Content);
+
+            // Load Content from level13
+            l13.LoadContent(Content);
         }
 
         // Update
@@ -288,7 +292,23 @@ namespace Block_bounce
                         currentLevel = l12.currentLevel;
                         l12.Update(gameTime);
                         break;
-                    }  
+                    }
+                case 13:
+                    {
+                        // Player alive check
+                        #region
+                        if (l13.p.playerDied == true)
+                        {
+                            playerIsAlive = false;
+                            l13.p.playerDied = false;
+                        }
+
+                        else playerIsAlive = true;
+                        #endregion
+                        currentLevel = l13.currentLevel;
+                        l13.Update(gameTime);
+                        break;
+                    }
                 #endregion
             }
         }                
@@ -361,6 +381,11 @@ namespace Block_bounce
                 case 12:
                     {
                         l12.Draw(spriteBatch);
+                        break;
+                    }
+                case 13:
+                    {
+                        l13.Draw(spriteBatch);
                         break;
                     }
                 #endregion

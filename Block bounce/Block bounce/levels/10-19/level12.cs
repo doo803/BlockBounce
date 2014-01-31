@@ -13,6 +13,8 @@ namespace Block_bounce.levels
 {
     public class level12 : BaseLevel
     {
+        Texture2D texture;
+
         public level12()
         {
             startPos = new Vector2(0, Game1.screenHeight - 30);
@@ -27,6 +29,8 @@ namespace Block_bounce.levels
             currentLevel = 12;
 
             endArea = new Rectangle(880, Game1.screenHeight - 30, 20, 20);
+
+            texture = Content.Load<Texture2D>("level/12/background");
 
             #endregion
 
@@ -162,6 +166,13 @@ namespace Block_bounce.levels
             spikeRowList.Add(new SpikeRow(Content.Load<Texture2D>("level/spike/spike"), new Rectangle(200, Game1.screenHeight - 30, 580, 30)));
 
             #endregion
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, Vector2.Zero, Color.White);
+            
+            base.Draw(spriteBatch);
         }
     }
 }

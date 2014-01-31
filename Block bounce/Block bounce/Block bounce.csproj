@@ -138,6 +138,7 @@
     <Compile Include="levels\10-19\level10.cs" />
     <Compile Include="levels\10-19\level11.cs" />
     <Compile Include="levels\10-19\level12.cs" />
+    <Compile Include="levels\10-19\level13.cs" />
     <Compile Include="MovingPlatform.cs" />
     <Compile Include="MovingSpike.cs" />
     <Compile Include="Platform.cs" />
