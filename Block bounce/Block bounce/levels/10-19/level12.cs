@@ -32,7 +32,12 @@ namespace Block_bounce.levels
 
             // Begin level design
             #region
+            // Decaying platforms
+            decayingPlatformList.Add(new DecayingPlatform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(100, Game1.screenHeight - 100), 
+                3, 60));
 
+            // Spikes
+            spikeRowList.Add(new SpikeRow(Content.Load<Texture2D>("level/spike/spike"), new Rectangle(200, Game1.screenHeight - 30, 580, 30)));
 
             #endregion
         }

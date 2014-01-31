@@ -14,21 +14,24 @@ namespace Block_bounce
 {
     public class BaseLevel
     {
-        public Texture2D endAreaTexture, bulletLeft, bulletRight;
+        public Texture2D endAreaTexture, bulletLeft, bulletRight, backgroundMain, brokenTexture;
         public int timer, initialTimer;
         public int currentLevel, i;
         public Rectangle endArea;
         public bool hasDied, isColliding, isOnConveyor;
         public Player p;
+        public DecayingPlatform decayPlat;
         public HUD hud = new HUD();
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<MovingPlatform> movingPlatformList = new List<MovingPlatform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
+        public List<SpikeRow> spikeRowList = new List<SpikeRow>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
         public List<Shooter> shooterList = new List<Shooter>();
         public List<Bullet> bulletList = new List<Bullet>();
+        public List<DecayingPlatform> decayingPlatformList = new List<DecayingPlatform>();
         public Vector2 startPos;
         
         // Constructor
@@ -44,12 +47,13 @@ namespace Block_bounce
         public virtual void LoadContent(ContentManager Content)
         {
             sm.LoadContent(Content);
+            backgroundMain = Content.Load<Texture2D>("level/backgroundmain");
             endAreaTexture = Content.Load<Texture2D>("level/redpixel");
+            brokenTexture = Content.Load<Texture2D>("level/platform/brokenTexture");
 
             bulletLeft = Content.Load<Texture2D>("level/shooter/bulletleft");
             bulletRight = Content.Load<Texture2D>("level/shooter/bulletright");
 
-            // **CHANGE THE VECTOR2 PER LEVEL
             p = new Player(Content.Load<Texture2D>("player/playertexture"), startPos);
 
             // Floor
@@ -166,6 +170,52 @@ namespace Block_bounce
             }
             #endregion
 
+            foreach (DecayingPlatform dplat in decayingPlatformList)
+            #region
+            {
+                dplat.Update(gameTime);
+
+                if (p.boundingBox.isOnTopOf(dplat.boundingBox))
+                {
+                    dplat.beginDecay = true;
+                }
+
+                if (p.boundingBox.isOnTopOf(dplat.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.hasJumped = false;
+                }
+
+                if (p.boundingBox.Y - 20 >= (dplat.boundingBox.Y))
+                {
+                    isColliding = true;
+                }
+
+                else if (p.boundingBox.hasHitBottomOf(dplat.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.playerPosition.Y += 5;
+                    p.hasJumped = true;
+                }
+
+                if (p.boundingBox.hasHitLeftOf(dplat.boundingBox))
+                {
+                    if (p.velocity.X >= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }
+
+                else if (p.boundingBox.hasHitRightOf(dplat.boundingBox))
+                {
+                    if (p.velocity.X <= 1)
+                    {
+                        p.velocity.X = 0;
+                    }
+                }
+            }
+            #endregion
+
             foreach (MovingSpike ms in movingSpikeList)
             #region
             {
@@ -176,6 +226,16 @@ namespace Block_bounce
             foreach (Spikes sp in spikeList)
             #region
                 if (p.boundingBox.Intersects(sp.boundingBox))
+                {
+                    p.playerPosition = startPos;
+                    p.velocity.Y = 0;
+                    hasDied = true;
+                }
+                #endregion
+
+            foreach (SpikeRow sprow in spikeRowList)
+            #region
+                if (p.boundingBox.Intersects(sprow.boundingBox))
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
@@ -310,6 +370,7 @@ namespace Block_bounce
             }
             #endregion
 
+
             // Stops sound playing twice if player hits more than 1 spike 
             if (hasDied == true)
             {
@@ -334,43 +395,74 @@ namespace Block_bounce
         // Draw
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+
             spriteBatch.Draw(endAreaTexture, endArea, Color.White);
 
             foreach (Platform plat in platformList)
+            #region
             {
                 plat.Draw(spriteBatch);
             }
+            #endregion
 
             foreach (MovingPlatform mplat in movingPlatformList)
+            #region
             {
                 mplat.Draw(spriteBatch);
             }
+            #endregion
+
+            foreach (DecayingPlatform dplat in decayingPlatformList)
+            #region
+            {
+                dplat.Draw(spriteBatch);
+                // Also draw brokenTexture
+                spriteBatch.Draw(brokenTexture, dplat.position, dplat.boundingBox, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
+            #endregion
 
             foreach (Spikes sp in spikeList)
+            #region
             {
                 sp.Draw(spriteBatch);
             }
+            #endregion
 
             foreach (MovingSpike ms in movingSpikeList)
+            #region
             {
                 ms.Draw(spriteBatch);
             }
+            #endregion
+
+            foreach (SpikeRow sprow in spikeRowList)
+            #region
+            {
+                sprow.Draw(spriteBatch);
+            }
+            #endregion
 
             foreach (Conveyor c in conveyorList)
+            #region
             {
                 c.Draw(spriteBatch);
             }
+            #endregion
 
             foreach (Bullet b in bulletList)
+            #region
             {
                 b.Draw(spriteBatch);
             }
+            #endregion
 
             foreach (Shooter sh in shooterList)
+            #region
             {
                 sh.Draw(spriteBatch);
             }
-            
+            #endregion
+
             p.Draw(spriteBatch);
         }
 

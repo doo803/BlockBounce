@@ -32,7 +32,7 @@ namespace Block_bounce
         }
 
         // Draw
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, boundingBox, Color.White);
         }

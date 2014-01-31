@@ -25,7 +25,7 @@ namespace Block_bounce
             texture = newTexture;
             position = newPosition;
             direction = newDirection;
-            shootTimer = 0;
+            shootTimer = newInterval - 1;
             interval = newInterval;
         }
 

@@ -124,6 +124,7 @@
     <Compile Include="Bullet.cs" />
     <Compile Include="Credits.cs" />
     <Compile Include="Conveyor.cs" />
+    <Compile Include="DecayingPlatform.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="levels\1-9\level1.cs" />
     <Compile Include="levels\1-9\level2.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Shooter.cs" />
     <Compile Include="SoundManager.cs" />
+    <Compile Include="SpikeRow.cs" />
     <Compile Include="Spikes.cs" />
   </ItemGroup>
   <ItemGroup>
