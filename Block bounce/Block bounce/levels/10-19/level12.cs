@@ -170,9 +170,9 @@ namespace Block_bounce.levels
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Vector2.Zero, Color.White);
-            
             base.Draw(spriteBatch);
+
+            spriteBatch.Draw(texture, Vector2.Zero, Color.White);                       
         }
     }
 }

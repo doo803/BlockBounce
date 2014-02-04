@@ -25,13 +25,14 @@ namespace Block_bounce
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<MovingPlatform> movingPlatformList = new List<MovingPlatform>();
+        public List<CirclePlatform> circlePlatformList = new List<CirclePlatform>();
+        public List<DecayingPlatform> decayingPlatformList = new List<DecayingPlatform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
         public List<SpikeRow> spikeRowList = new List<SpikeRow>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
         public List<Shooter> shooterList = new List<Shooter>();
-        public List<Bullet> bulletList = new List<Bullet>();
-        public List<DecayingPlatform> decayingPlatformList = new List<DecayingPlatform>();
+        public List<Bullet> bulletList = new List<Bullet>();       
         public Vector2 startPos;
         
         // Constructor
@@ -47,7 +48,7 @@ namespace Block_bounce
         public virtual void LoadContent(ContentManager Content)
         {
             sm.LoadContent(Content);
-            backgroundMain = Content.Load<Texture2D>("level/backgroundmain");
+            //backgroundMain = Content.Load<Texture2D>("level/backgroundmain");
             endAreaTexture = Content.Load<Texture2D>("level/redpixel");
             brokenTexture = Content.Load<Texture2D>("level/platform/brokenTexture");
 
@@ -68,16 +69,12 @@ namespace Block_bounce
             foreach (Platform plat in platformList)
             #region
             {
+                plat.Update(gameTime);
                 
                 if (p.boundingBox.isOnTopOf(plat.boundingBox) && p.velocity.Y >= 0)
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
-                }
-
-                if (p.boundingBox.Y - 20 >= (plat.boundingBox.Y))
-                {
-                    isColliding = true;
                 }
 
                 else if (p.boundingBox.hasHitBottomOf(plat.boundingBox))
@@ -213,6 +210,13 @@ namespace Block_bounce
                         p.velocity.X = 0;
                     }
                 }
+            }
+            #endregion
+
+            foreach (CirclePlatform cplat in circlePlatformList)
+            #region
+            {
+                cplat.Update(gameTime);
             }
             #endregion
 
@@ -395,6 +399,7 @@ namespace Block_bounce
         // Draw
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            //spriteBatch.Draw(backgroundMain, Vector2.Zero, Color.White);
 
             spriteBatch.Draw(endAreaTexture, endArea, Color.White);
 
@@ -418,6 +423,13 @@ namespace Block_bounce
                 dplat.Draw(spriteBatch);
                 // Also draw brokenTexture
                 spriteBatch.Draw(brokenTexture, dplat.position, dplat.boundingBox, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
+            #endregion
+
+            foreach (CirclePlatform cplat in circlePlatformList)
+            #region
+            {
+                cplat.Draw(spriteBatch);
             }
             #endregion
 
@@ -487,7 +499,6 @@ namespace Block_bounce
             }
 
         }
-
     }
 }
 

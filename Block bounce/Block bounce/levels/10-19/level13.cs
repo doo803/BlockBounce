@@ -32,7 +32,7 @@ namespace Block_bounce.levels
 
             // Begin level design
             #region
-
+            circlePlatformList.Add(new CirclePlatform(Content.Load<Texture2D>("level/platform/40platform20"), new Vector2(400, 300), 400, 600, "clockwise", 3));
             #endregion
         }
     }

@@ -23,12 +23,11 @@ namespace Block_bounce
         {
             texture = newTexture;
             position = newPosition;
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
         // Draw
