@@ -398,6 +398,13 @@
   <ItemGroup>
     <Folder Include="scenery\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="level\platform\20pushplatform20.png">
+      <Name>20pushplatform20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

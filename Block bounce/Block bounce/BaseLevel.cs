@@ -27,6 +27,7 @@ namespace Block_bounce
         public List<MovingPlatform> movingPlatformList = new List<MovingPlatform>();
         public List<CirclePlatform> circlePlatformList = new List<CirclePlatform>();
         public List<DecayingPlatform> decayingPlatformList = new List<DecayingPlatform>();
+        public List<PushPlatform> pushPlatformList = new List<PushPlatform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
         public List<SpikeRow> spikeRowList = new List<SpikeRow>();
@@ -58,7 +59,8 @@ namespace Block_bounce
             p = new Player(Content.Load<Texture2D>("player/playertexture"), startPos);
 
             // Floor
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/900platform10"), new Vector2(0, Game1.screenHeight - 10)));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/900platform10"),
+                new Vector2(0, Game1.screenHeight - 10)));
         }
 
         // Update
@@ -217,6 +219,41 @@ namespace Block_bounce
             #region
             {
                 cplat.Update(gameTime);
+            }
+            #endregion
+
+            foreach (PushPlatform pushPlat in pushPlatformList)
+            #region
+            {
+                pushPlat.Update(gameTime);
+
+                // Move the platform when pushed by player
+                if (p.boundingBox.hasHitLeftOf(pushPlat.boundingBox) && p.velocity.X > 0 ||
+                    p.boundingBox.hasHitRightOf(pushPlat.boundingBox) && p.velocity.X < 0)
+                {
+                    pushPlat.velocity.X = p.velocity.X;
+                }
+
+                else
+                {
+                    pushPlat.velocity.X = 0;
+                }
+
+                // Stop the platform from going off the screen 
+                // (Temporary until changed to velocity with collisions)
+
+                if (pushPlat.position.X <= 0)
+                {
+                    pushPlat.position.X = 0;
+                }
+
+                else if (pushPlat.position.X + pushPlat.texture.Width >= Game1.screenHeight)
+                {
+                    pushPlat.position.X = Game1.screenHeight - pushPlat.texture.Width;
+                }
+
+                // Also will need to bring in player collisions
+                // (Best to do once changed to velocity)
             }
             #endregion
 
@@ -430,6 +467,13 @@ namespace Block_bounce
             #region
             {
                 cplat.Draw(spriteBatch);
+            }
+            #endregion
+
+            foreach (PushPlatform pushPlat in pushPlatformList)
+            #region
+            {
+                pushPlat.Draw(spriteBatch);
             }
             #endregion
 

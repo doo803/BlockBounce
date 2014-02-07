@@ -61,10 +61,11 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C0C9A67FEDE7E7693633FCBF5D16D118B09C12DB</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8F75CEE82525EAD55C94CE437616632A21D39F3E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Block bounce_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -152,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="PushPlatform.cs" />
     <Compile Include="Shooter.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="SpikeRow.cs" />
