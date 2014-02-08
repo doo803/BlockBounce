@@ -13,7 +13,7 @@ namespace Block_bounce
 {
     public class DecayingPlatform : Platform
     {
-        int decaying; // 0 = not decaying, 1 = decaying, 2 = decayed (invisible)
+        public int decaying; // 0 = not decaying, 1 = decaying, 2 = decayed (invisible)
         int decayTimer, delay, respawnTimer, respawnRate;
         public bool beginDecay;
         float decayState;
@@ -58,7 +58,6 @@ namespace Block_bounce
                     decaying = 2;
                 }
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             }
 
             if (decaying == 2)

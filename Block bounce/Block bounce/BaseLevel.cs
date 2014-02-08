@@ -86,6 +86,11 @@ namespace Block_bounce
                     p.hasJumped = true;
                 }
 
+                if (p.boundingBox.Y - 20 >= (plat.boundingBox.Y))
+                {
+                    isColliding = true;
+                }
+
                 if (p.boundingBox.hasHitLeftOf(plat.boundingBox))
                 {
                     if (p.velocity.X >= 1)
@@ -179,16 +184,16 @@ namespace Block_bounce
                     dplat.beginDecay = true;
                 }
 
+                if (dplat.decaying == 2)
+                {
+                    dplat.boundingBox = new Rectangle(0, 0, 0, 0);
+                }
+
                 if (p.boundingBox.isOnTopOf(dplat.boundingBox))
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
-                }
-
-                if (p.boundingBox.Y - 20 >= (dplat.boundingBox.Y))
-                {
-                    isColliding = true;
-                }
+                }               
 
                 else if (p.boundingBox.hasHitBottomOf(dplat.boundingBox))
                 {
@@ -240,20 +245,43 @@ namespace Block_bounce
                 }
 
                 // Stop the platform from going off the screen 
-                // (Temporary until changed to velocity with collisions)
 
-                if (pushPlat.position.X <= 0)
+                if (pushPlat.position.X <= 0 && pushPlat.velocity.X < 0)
                 {
-                    pushPlat.position.X = 0;
+                    pushPlat.velocity.X = 0;
+
+                    if (p.velocity.X < 0 && p.boundingBox.hasHitRightOf(pushPlat.boundingBox))
+                    {
+                        p.velocity.X = 0;
+                    }
                 }
 
-                else if (pushPlat.position.X + pushPlat.texture.Width >= Game1.screenHeight)
+                else if (pushPlat.position.X + pushPlat.texture.Width >= Game1.screenWidth)
                 {
-                    pushPlat.position.X = Game1.screenHeight - pushPlat.texture.Width;
+                    pushPlat.position.X = Game1.screenWidth - pushPlat.texture.Width;
+
+                    if (p.velocity.X > 0 && p.boundingBox.hasHitLeftOf(pushPlat.boundingBox))
+                    {
+                        p.velocity.X = 0;
+                    }
                 }
 
-                // Also will need to bring in player collisions
-                // (Best to do once changed to velocity)
+                // Player Collisions
+                #region
+                if (p.boundingBox.isOnTopOf(pushPlat.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.hasJumped = false;
+                }
+
+                else if (p.boundingBox.hasHitBottomOf(pushPlat.boundingBox))
+                {
+                    p.velocity.Y = 0;
+                    p.playerPosition.Y += 5;
+                    p.hasJumped = true;
+                }
+
+                #endregion
             }
             #endregion
 

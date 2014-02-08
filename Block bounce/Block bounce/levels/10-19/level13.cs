@@ -32,7 +32,7 @@ namespace Block_bounce.levels
 
             // Begin level design
             #region
-            pushPlatformList.Add(new PushPlatform(Content.Load<Texture2D>("level/platform/20pushplatform20"), new Vector2(300, 570)));
+            pushPlatformList.Add(new PushPlatform(Content.Load<Texture2D>("level/platform/40pushplatform40"), new Vector2(400, 550)));
 
             #endregion
         }

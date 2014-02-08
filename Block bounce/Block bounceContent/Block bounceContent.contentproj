@@ -399,8 +399,8 @@
     <Folder Include="scenery\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level\platform\20pushplatform20.png">
-      <Name>20pushplatform20</Name>
+    <Compile Include="level\platform\40pushplatform40.png">
+      <Name>40pushplatform40</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
