@@ -327,6 +327,13 @@ namespace Block_bounce
             #region
             {
                 pound.Update(gameTime);
+
+                if (p.boundingBox.Intersects(pound.boundingBoxSpike))
+                {
+                    p.playerPosition = startPos;
+                    p.velocity.Y = 0;
+                    hasDied = true;
+                }
             }
             #endregion
 
@@ -476,6 +483,20 @@ namespace Block_bounce
 
             spriteBatch.Draw(endAreaTexture, endArea, Color.White);
 
+            foreach (Bullet b in bulletList)
+            #region
+            {
+                b.Draw(spriteBatch);
+            }
+            #endregion
+
+            foreach (Pounder pound in pounderList)
+            #region
+            {
+                pound.Draw(spriteBatch);
+            }
+            #endregion
+
             foreach (Platform plat in platformList)
             #region
             {
@@ -540,14 +561,7 @@ namespace Block_bounce
                 c.Draw(spriteBatch);
             }
             #endregion
-
-            foreach (Bullet b in bulletList)
-            #region
-            {
-                b.Draw(spriteBatch);
-            }
-            #endregion
-
+            
             foreach (Shooter sh in shooterList)
             #region
             {
@@ -555,12 +569,7 @@ namespace Block_bounce
             }
             #endregion
 
-            foreach (Pounder pound in pounderList)
-            #region
-            {
-                pound.Draw(spriteBatch);
-            }
-            #endregion
+            
 
             p.Draw(spriteBatch);
         }

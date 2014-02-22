@@ -19,12 +19,13 @@ namespace Block_bounce
         public int spriteWidth, spriteHeight, currentFrame;
         public float timer, interval;
 
-        public Pounder(Texture2D newTexture, Vector2 newPosition, int newInterval)
+        public Pounder(Texture2D newTexture, Vector2 newPosition, int newInterval, int newCurrentFrame)
         {
             texture = newTexture;
             position = newPosition;
             interval = newInterval;
-            currentFrame = 0;
+            timer = 0;
+            currentFrame = newCurrentFrame;
             spriteWidth = newTexture.Width;
         }
 
@@ -37,19 +38,27 @@ namespace Block_bounce
                 timer = 0;
             }
 
-            sourceRect = new Rectangle(0, currentFrame * 100, spriteWidth, spriteHeight);
-
-            // Change spriteHeight based on current frame
-            spriteHeight = 24 + (8 * currentFrame);
-            if (currentFrame < 7)
+            if (currentFrame <= 12)
             {
-                spriteHeight = 24 + (8 * currentFrame);
+                sourceRect = new Rectangle(0, texture.Height - 24 - (((texture.Height - 24)/ 12) * currentFrame),
+                    texture.Width, 24 + (((texture.Height - 24) / 12) * currentFrame));
             }
 
-            else if (currentFrame >= 7)
+            if (currentFrame > 12)
             {
-                spriteHeight = 24 + 58;
+                sourceRect = new Rectangle(0, texture.Height + (((texture.Height) / 24) * (currentFrame - 12)), texture.Width,
+                    texture.Height - (((texture.Height) / 24) * (currentFrame - 12)));
             }
+
+            if (currentFrame >= 33)
+            {
+                currentFrame = 0;
+            }
+          
+            // Options for death area of object to be whole object or just the bottom end
+
+            //boundingBoxSpike = new Rectangle((int)position.X, (int)position.Y + (sourceRect.Height - 10), texture.Width, 10);
+            boundingBoxSpike = new Rectangle((int)position.X, (int)position.Y, sourceRect.Width, sourceRect.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
