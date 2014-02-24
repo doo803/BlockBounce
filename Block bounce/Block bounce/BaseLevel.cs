@@ -46,8 +46,7 @@ namespace Block_bounce
             initialTimer = 0;
             i = 0;
 
-            if (hud.difficulty != 0)
-                difficulty = hud.difficulty;
+            
         }
 
         // Load Content
@@ -481,7 +480,11 @@ namespace Block_bounce
             }
             #endregion
 
-            difficulty = hud.difficulty;
+            if (difficulty == 0)
+            {
+                string difficultyString = System.IO.File.ReadAllText(@"Difficulty.txt");
+                difficulty = Convert.ToInt32(difficultyString);
+            }
 
             // Stops sound playing twice if player hits more than 1 spike 
             if (hasDied == true)
@@ -491,8 +494,6 @@ namespace Block_bounce
                 hud.deathCount += 1;
                 p.playerDied = true;
             }
-
-            hud.Update(gameTime);
 
             // End position
             if (p.boundingBox.Intersects(endArea))

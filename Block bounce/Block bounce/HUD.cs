@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -22,6 +23,7 @@ namespace Block_bounce
         {
             showHud = true;
             font = null;
+            
         }
 
         // Load Content
@@ -35,6 +37,10 @@ namespace Block_bounce
         {
             ticks++;
             secondsTaken = ticks / 60;
+
+            string[] difficultyString = { difficulty.ToString() };
+
+            System.IO.File.WriteAllLines("Difficulty.txt", difficultyString);
 
             if (secondsTaken == 60) 
             {

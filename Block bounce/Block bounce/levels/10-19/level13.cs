@@ -26,7 +26,7 @@ namespace Block_bounce.levels
             #region
             currentLevel = 13;
 
-            endArea = new Rectangle(880, Game1.screenHeight - 30, 20, 20);
+            endArea = new Rectangle(880, Game1.screenHeight - 40, 20, 20);
 
             #endregion
 

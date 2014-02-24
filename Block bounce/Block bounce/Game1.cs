@@ -16,7 +16,6 @@ namespace Block_bounce
         // Screen dimension
         public static int screenHeight = 600;
         public static int screenWidth = 900;
-        public int difficulty;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -97,10 +96,6 @@ namespace Block_bounce
             // Makes mouse visible
             IsMouseVisible = true;
 
-            hud.difficulty = difficulty;
-
-            hud.Update(gameTime);
-
             KeyboardState keyState = Keyboard.GetState();
 
             switch (gameState)
@@ -113,8 +108,15 @@ namespace Block_bounce
 
                         if (menu.menuVal == 1)
                         {
-                            gameState = State.Difficulty;
+                            if (hud.difficulty == 0)
+                            {
+                                gameState = State.Difficulty;
+                            }
 
+                            else
+                            {
+                                gameState = State.Playing;
+                            }
                             // Stop menu music
                             MediaPlayer.Stop();
                             menu.songBegin = 0;
@@ -155,7 +157,6 @@ namespace Block_bounce
                         { 
                             case 1:
                             {
-                                difficulty = 1;
                                 gameState = State.Playing;
                                 diff.menuVal = 0;
                                 hud.difficulty = 1;
@@ -171,9 +172,9 @@ namespace Block_bounce
 
                             case 2:
                             {
-                                difficulty = 2;
                                 gameState = State.Playing;
                                 diff.menuVal = 0;
+                                hud.difficulty = 2;
 
                                 // Begin HUD timer from 0
                                 hud.ticks = 0;
@@ -185,9 +186,9 @@ namespace Block_bounce
 
                             case 3:
                             {
-                                difficulty = 3;
                                 gameState = State.Playing;
                                 diff.menuVal = 0;
+                                hud.difficulty = 3;
 
                                 // Begin HUD timer from 0
                                 hud.ticks = 0;
@@ -199,9 +200,9 @@ namespace Block_bounce
 
                             case 4:
                             {
-                                difficulty = 4;
                                 gameState = State.Playing;
                                 diff.menuVal = 0;
+                                hud.difficulty = 4;
 
                                 // Begin HUD timer from 0
                                 hud.ticks = 0;
@@ -221,6 +222,9 @@ namespace Block_bounce
                     {
                         // Update Playing class
                         play.Update(gameTime);
+
+                        // Update HUD
+                        hud.Update(gameTime);
 
                         // Open pause screen
                         if (keyState.IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
