@@ -17,8 +17,6 @@ namespace Block_bounce
         public SpriteFont font;
         public bool showHud;
 
-        DifficultySelect diff = new DifficultySelect();
-
         // Constructor
         public HUD()
         {

@@ -28,7 +28,7 @@ namespace Block_bounce
         public levels.level12 l12 = new levels.level12();
         public levels.level13 l13 = new levels.level13();
 
-        public int currentLevel;
+        public int currentLevel, difficulty;
         public Vector2 playerPosition;
         public bool playerIsAlive, devMode;
         private int i;
@@ -90,9 +90,10 @@ namespace Block_bounce
         // Update
         public void Update(GameTime gameTime)
         {
-
             // Allow dev mode tools
             DevTools();
+
+            baseLevel.difficulty = difficulty;
 
             switch (currentLevel)
             {

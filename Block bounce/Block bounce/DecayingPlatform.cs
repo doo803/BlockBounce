@@ -46,7 +46,7 @@ namespace Block_bounce
 
             if (decaying == 1)
             {                
-                decayTimer++;a
+                decayTimer++;
                 if (decayTimer >= delay)
                 {
                     decayTimer = 0;

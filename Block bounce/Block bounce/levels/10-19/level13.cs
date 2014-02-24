@@ -82,6 +82,11 @@ namespace Block_bounce.levels
 
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(100, 360)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(400, 360))); 
+
+            // Checkpoints
+            checkpointList.Add(new Checkpoint(new Vector2(780, 500)));
+            
+
             #endregion
         }
     }

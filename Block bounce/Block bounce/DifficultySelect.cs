@@ -32,10 +32,10 @@ namespace Block_bounce
         {
             sm.LoadContent(Content);
             texture = Content.Load<Texture2D>("difficulty/difftexture");
-            box1 = Content.Load<Texture2D>("difficulty/sel1");
-            box2 = Content.Load<Texture2D>("difficulty/sel2");
-            box3 = Content.Load<Texture2D>("difficulty/sel3");
-            box4 = Content.Load<Texture2D>("difficulty/sel4");
+            box1 = Content.Load<Texture2D>("difficulty/s1");
+            box2 = Content.Load<Texture2D>("difficulty/s2");
+            box3 = Content.Load<Texture2D>("difficulty/s3");
+            box4 = Content.Load<Texture2D>("difficulty/s4");
         }
 
         // Update

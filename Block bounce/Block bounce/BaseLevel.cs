@@ -14,8 +14,8 @@ namespace Block_bounce
 {
     public class BaseLevel
     {
-        public Texture2D endAreaTexture, bulletLeft, bulletRight, backgroundMain, brokenTexture;
-        public int timer, initialTimer;
+        public Texture2D endAreaTexture, bulletLeft, bulletRight, backgroundMain, brokenTexture, check1, check2;
+        public int timer, initialTimer, difficulty;
         public int currentLevel, i;
         public Rectangle endArea;
         public bool hasDied, isColliding, isOnConveyor;
@@ -34,7 +34,8 @@ namespace Block_bounce
         public List<Pounder> pounderList = new List<Pounder>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
         public List<Shooter> shooterList = new List<Shooter>();
-        public List<Bullet> bulletList = new List<Bullet>();       
+        public List<Bullet> bulletList = new List<Bullet>();
+        public List<Checkpoint> checkpointList = new List<Checkpoint>();
         public Vector2 startPos;
         
         // Constructor
@@ -44,6 +45,9 @@ namespace Block_bounce
             timer = 0;
             initialTimer = 0;
             i = 0;
+
+            if (hud.difficulty != 0)
+                difficulty = hud.difficulty;
         }
 
         // Load Content
@@ -53,6 +57,9 @@ namespace Block_bounce
             //backgroundMain = Content.Load<Texture2D>("level/backgroundmain");
             endAreaTexture = Content.Load<Texture2D>("level/redpixel");
             brokenTexture = Content.Load<Texture2D>("level/platform/brokenTexture");
+
+            check1 = Content.Load<Texture2D>("level/checkpoint/checkpoint1");
+            check2 = Content.Load<Texture2D>("level/checkpoint/checkpoint2");
 
             bulletLeft = Content.Load<Texture2D>("level/shooter/bulletleft");
             bulletRight = Content.Load<Texture2D>("level/shooter/bulletright");
@@ -454,6 +461,27 @@ namespace Block_bounce
             }
             #endregion
 
+            foreach (Checkpoint check in checkpointList)
+            #region
+            {
+                if(difficulty == 1)
+                {
+                    check.Update(gameTime);
+
+                    if(p.boundingBox.Intersects(check.boundingBox))
+                    {
+                        check.activated = true;
+                    }
+
+                    if(check.activated)
+                    {
+                        startPos = new Vector2(check.boundingBox.X, check.boundingBox.Y);
+                    }
+                }
+            }
+            #endregion
+
+            difficulty = hud.difficulty;
 
             // Stops sound playing twice if player hits more than 1 spike 
             if (hasDied == true)
@@ -569,7 +597,23 @@ namespace Block_bounce
             }
             #endregion
 
-            
+            foreach (Checkpoint check in checkpointList)
+            #region
+            {
+                if(hud.difficulty == 1 || difficulty == 1)
+                {
+                    if(check.activated)
+                    {
+                        spriteBatch.Draw(check1, check.boundingBox, Color.White);
+                    }
+
+                    else if (!check.activated)
+                    {
+                        spriteBatch.Draw(check2, check.boundingBox, Color.White);
+                    }
+                }
+            }
+            #endregion
 
             p.Draw(spriteBatch);
         }

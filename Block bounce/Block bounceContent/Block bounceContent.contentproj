@@ -455,23 +455,37 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="difficulty\sel1.png">
-      <Name>sel1</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="difficulty\s1.png">
+      <Name>s1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="difficulty\sel2.png">
-      <Name>sel2</Name>
+    <Compile Include="difficulty\s2.png">
+      <Name>s2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="difficulty\sel3.png">
-      <Name>sel3</Name>
+    <Compile Include="difficulty\s3.png">
+      <Name>s3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="difficulty\sel4.png">
-      <Name>sel4</Name>
+    <Compile Include="difficulty\s4.png">
+      <Name>s4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="level\checkpoint\checkpoint1.png">
+      <Name>checkpoint1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="level\checkpoint\checkpoint2.png">
+      <Name>checkpoint2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

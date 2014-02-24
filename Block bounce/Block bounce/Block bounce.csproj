@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="BaseLevel.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="Checkpoint.cs" />
     <Compile Include="CirclePlatform.cs" />
     <Compile Include="Conveyor.cs">
       <SubType>Code</SubType>

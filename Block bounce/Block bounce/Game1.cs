@@ -42,6 +42,7 @@ namespace Block_bounce
         SoundManager sm = new SoundManager();
         HUD hud = new HUD();
         DifficultySelect diff = new DifficultySelect();
+        BaseLevel baseLevel = new BaseLevel();
 
         public Game1()
         {           
@@ -157,6 +158,8 @@ namespace Block_bounce
                                 difficulty = 1;
                                 gameState = State.Playing;
                                 diff.menuVal = 0;
+                                hud.difficulty = 1;
+                                play.difficulty = 1;
 
                                 // Begin HUD timer from 0
                                 hud.ticks = 0;
