@@ -15,7 +15,7 @@ namespace Block_bounce.levels
     {
         public level13()
         {
-            startPos = new Vector2(0, Game1.screenHeight - 40);
+            startPos = new Vector2(0, 560);
         }
 
         public override void LoadContent(ContentManager Content)
@@ -44,7 +44,8 @@ namespace Block_bounce.levels
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(610, 470)));
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(670, 560)));
 
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(320, 440)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(300, 440)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(260, 370)));
 
             // Wall
             platformList.Add(new Platform(Content.Load<Texture2D>("level/wall/20wall600"), new Vector2(800, 100)));
@@ -52,6 +53,8 @@ namespace Block_bounce.levels
             // Conveyor
             conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/200conveyorleft20"), new Vector2(480, 580), "left"));
             conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/100conveyorleft20"), new Vector2(680, 580), "left"));
+
+            conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/100conveyorleft20"), new Vector2(285, 458), "left"));
 
             // Shooter 
             shooterList.Add(new Shooter(Content.Load<Texture2D>("level/shooter/shooterleft"), new Vector2(780, 560),

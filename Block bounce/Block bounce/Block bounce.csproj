@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Credits.cs" />
     <Compile Include="DecayingPlatform.cs" />
+    <Compile Include="DifficultySelect.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="levels\1-9\level1.cs" />
     <Compile Include="levels\1-9\level2.cs" />

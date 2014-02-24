@@ -13,9 +13,11 @@ namespace Block_bounce
 {
     public class HUD
     {
-        public int secondsTaken, minutesTaken, screenWidth, screenHeight, deathCount, ticks;
+        public int secondsTaken, minutesTaken, screenWidth, screenHeight, deathCount, ticks, difficulty;
         public SpriteFont font;
         public bool showHud;
+
+        DifficultySelect diff = new DifficultySelect();
 
         // Constructor
         public HUD()
@@ -63,6 +65,35 @@ namespace Block_bounce
                 }
                 
                 spriteBatch.DrawString(font, "Deaths: " + deathCount, new Vector2(750, 5), Color.Red);
+
+                switch (difficulty)
+                {
+                    #region
+                    case 1:
+                        {
+                            spriteBatch.DrawString(font, "Difficulty: -Easy-", new Vector2(400, 5), Color.Red);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.DrawString(font, "Difficulty: --Normal--", new Vector2(400, 5), Color.Red);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.DrawString(font, "Difficulty: *Hard*", new Vector2(400, 5), Color.Red);
+                            break;
+                        }
+
+                    case 4:
+                        {
+                            spriteBatch.DrawString(font, "Difficulty: **Insane**", new Vector2(400, 5), Color.Red);
+                            break;
+                        }
+                    #endregion
+                }                
             }
         }
     }
