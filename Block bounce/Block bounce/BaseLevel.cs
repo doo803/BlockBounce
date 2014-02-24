@@ -31,6 +31,7 @@ namespace Block_bounce
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
         public List<SpikeRow> spikeRowList = new List<SpikeRow>();
+        public List<Pounder> pounderList = new List<Pounder>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
         public List<Shooter> shooterList = new List<Shooter>();
         public List<Bullet> bulletList = new List<Bullet>();       
@@ -322,6 +323,13 @@ namespace Block_bounce
                 }
             #endregion
 
+            foreach (Pounder pound in pounderList)
+            #region
+            {
+                pound.Update(gameTime);
+            }
+            #endregion
+
             foreach (Conveyor c in conveyorList)
             #region
             {
@@ -544,6 +552,13 @@ namespace Block_bounce
             #region
             {
                 sh.Draw(spriteBatch);
+            }
+            #endregion
+
+            foreach (Pounder pound in pounderList)
+            #region
+            {
+                pound.Draw(spriteBatch);
             }
             #endregion
 

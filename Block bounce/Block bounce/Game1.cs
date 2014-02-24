@@ -24,6 +24,7 @@ namespace Block_bounce
         public enum State
         { 
             Menu,
+            DifficultySelect,
             Playing,
             Pause,
             Credits,
@@ -96,15 +97,16 @@ namespace Block_bounce
 
             switch (gameState)
             {
+                // UPDATE MENU STATE
                 case State.Menu:
                     #region
                     {
-                        // Update menu class
+                        
                         menu.Update(gameTime);
 
                         if (menu.menuVal == 1)
                         {
-                            gameState = State.Playing;
+                            gameState = State.DifficultySelect;
 
                             // Stop menu music
                             MediaPlayer.Stop();
@@ -142,6 +144,16 @@ namespace Block_bounce
                     }
                     #endregion
 
+                // UPDATE DIFFICULTYSELECT STATE
+                case State.DifficultySelect:
+                    #region
+                    {
+
+                        break;
+                    }
+                    #endregion
+
+                // UPDATE PLAYING STATE
                 case State.Playing:
                     #region
                     {
@@ -166,6 +178,7 @@ namespace Block_bounce
                     }
                     #endregion                
 
+                // UPDATE PAUSE STATE
                 case State.Pause:
                     #region
                     {
@@ -195,6 +208,7 @@ namespace Block_bounce
                     }
                     #endregion
 
+                // UPDATE CREDITS STATE
                 case State.Credits:
                     #region
                     {
@@ -234,6 +248,14 @@ namespace Block_bounce
                         break;
                     }
                 #endregion
+
+                // DRAWING DRAW STATE
+                case State.DifficultySelect:
+                    #region
+                    {
+                        break;
+                    }
+                    #endregion
 
                 // DRAWING PLAYING STATE
                 #region

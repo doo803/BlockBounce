@@ -19,7 +19,7 @@
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Matthew Minish\Desktop\guiminer\</PublishUrl>
+    <PublishUrl>C:\Users\Matthew Minish\Desktop\GitHub\Published\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Credits.cs" />
     <Compile Include="DecayingPlatform.cs" />
+    <Compile Include="DifficultySelect.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="levels\1-9\level1.cs" />
     <Compile Include="levels\1-9\level2.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Pause.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Pounder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
