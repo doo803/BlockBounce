@@ -19,21 +19,13 @@ namespace Block_bounce
         public int spriteWidth, spriteHeight, currentFrame;
         public float timer, interval;
 
-<<<<<<< HEAD
-        public Pounder(Texture2D newTexture, Vector2 newPosition, int newInterval)
-=======
         public Pounder(Texture2D newTexture, Vector2 newPosition, int newInterval, int newCurrentFrame)
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
         {
             texture = newTexture;
             position = newPosition;
             interval = newInterval;
-<<<<<<< HEAD
-            currentFrame = 0;
-=======
             timer = 0;
             currentFrame = newCurrentFrame;
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
             spriteWidth = newTexture.Width;
         }
 
@@ -46,21 +38,6 @@ namespace Block_bounce
                 timer = 0;
             }
 
-<<<<<<< HEAD
-            sourceRect = new Rectangle(0, currentFrame * 100, spriteWidth, spriteHeight);
-
-            // Change spriteHeight based on current frame
-            spriteHeight = 24 + (8 * currentFrame);
-            if (currentFrame < 7)
-            {
-                spriteHeight = 24 + (8 * currentFrame);
-            }
-
-            else if (currentFrame >= 7)
-            {
-                spriteHeight = 24 + 58;
-            }
-=======
             if (currentFrame <= 12)
             {
                 sourceRect = new Rectangle(0, texture.Height - 24 - (((texture.Height - 24)/ 12) * currentFrame),
@@ -82,7 +59,6 @@ namespace Block_bounce
 
             //boundingBoxSpike = new Rectangle((int)position.X, (int)position.Y + (sourceRect.Height - 10), texture.Width, 10);
             boundingBoxSpike = new Rectangle((int)position.X, (int)position.Y, sourceRect.Width, sourceRect.Height);
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
         }
 
         public void Draw(SpriteBatch spriteBatch)

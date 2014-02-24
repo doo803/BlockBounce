@@ -25,11 +25,7 @@ namespace Block_bounce
         public enum State
         { 
             Menu,
-<<<<<<< HEAD
-            DifficultySelect,
-=======
             Difficulty,
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
             Playing,
             Pause,
             Credits,
@@ -108,20 +104,15 @@ namespace Block_bounce
 
             switch (gameState)
             {
-                // UPDATE MENU STATE
                 case State.Menu:
                     #region
                     {
-                        
+                        // Update menu class
                         menu.Update(gameTime);
 
                         if (menu.menuVal == 1)
                         {
-<<<<<<< HEAD
-                            gameState = State.DifficultySelect;
-=======
                             gameState = State.Difficulty;
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
 
                             // Stop menu music
                             MediaPlayer.Stop();
@@ -154,18 +145,6 @@ namespace Block_bounce
                     }
                     #endregion
 
-<<<<<<< HEAD
-                // UPDATE DIFFICULTYSELECT STATE
-                case State.DifficultySelect:
-                    #region
-                    {
-
-                        break;
-                    }
-                    #endregion
-
-                // UPDATE PLAYING STATE
-=======
                 case State.Difficulty:
                     #region
                     {
@@ -234,7 +213,6 @@ namespace Block_bounce
                     }
                     #endregion 
 
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
                 case State.Playing:
                     #region
                     {
@@ -259,7 +237,6 @@ namespace Block_bounce
                     }
                     #endregion                
 
-                // UPDATE PAUSE STATE
                 case State.Pause:
                     #region
                     {
@@ -289,7 +266,6 @@ namespace Block_bounce
                     }
                     #endregion
 
-                // UPDATE CREDITS STATE
                 case State.Credits:
                     #region
                     {
@@ -332,15 +308,6 @@ namespace Block_bounce
                     }
                 #endregion
 
-<<<<<<< HEAD
-                // DRAWING DRAW STATE
-                case State.DifficultySelect:
-                    #region
-                    {
-                        break;
-                    }
-                    #endregion
-=======
                 // DRAWING DIFFICULTY STATE
                 #region
                 case State.Difficulty:
@@ -349,7 +316,6 @@ namespace Block_bounce
                         break;
                     }
                 #endregion
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
 
                 // DRAWING PLAYING STATE
                 #region

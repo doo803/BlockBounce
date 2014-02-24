@@ -13,12 +13,6 @@ namespace Block_bounce
 {
     public class DifficultySelect
     {
-<<<<<<< HEAD
-        // Constructor
-        public DifficultySelect()
-        {
-        
-=======
         public Texture2D texture, box1, box2, box3, box4;
         public int selection, keyPress, menuVal, enterReset, difficulty;
 
@@ -31,30 +25,22 @@ namespace Block_bounce
             selection = 1;
             keyPress = 0;
             enterReset = 0;
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
         }
 
         // Load Content
         public void LoadContent(ContentManager Content)
         {
-<<<<<<< HEAD
-            
-=======
             sm.LoadContent(Content);
             texture = Content.Load<Texture2D>("difficulty/difftexture");
             box1 = Content.Load<Texture2D>("difficulty/sel1");
             box2 = Content.Load<Texture2D>("difficulty/sel2");
             box3 = Content.Load<Texture2D>("difficulty/sel3");
             box4 = Content.Load<Texture2D>("difficulty/sel4");
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
         }
 
         // Update
         public void Update(GameTime gameTime)
         {
-<<<<<<< HEAD
-        
-=======
             // Get keyboard state
             KeyboardState keyState = Keyboard.GetState();
 
@@ -158,15 +144,11 @@ namespace Block_bounce
                 }
             }
             #endregion
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
         }
 
         // Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-<<<<<<< HEAD
-        
-=======
             spriteBatch.Draw(texture, Vector2.Zero, Color.White);
 
             switch (selection)
@@ -197,7 +179,6 @@ namespace Block_bounce
                     }
             }
             #endregion
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
         }
     }
 }

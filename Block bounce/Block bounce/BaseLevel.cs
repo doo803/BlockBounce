@@ -327,8 +327,6 @@ namespace Block_bounce
             #region
             {
                 pound.Update(gameTime);
-<<<<<<< HEAD
-=======
 
                 if (p.boundingBox.Intersects(pound.boundingBoxSpike))
                 {
@@ -336,7 +334,6 @@ namespace Block_bounce
                     p.velocity.Y = 0;
                     hasDied = true;
                 }
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
             }
             #endregion
 
@@ -572,16 +569,7 @@ namespace Block_bounce
             }
             #endregion
 
-<<<<<<< HEAD
-            foreach (Pounder pound in pounderList)
-            #region
-            {
-                pound.Draw(spriteBatch);
-            }
-            #endregion
-=======
             
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
 
             p.Draw(spriteBatch);
         }

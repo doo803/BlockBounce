@@ -32,9 +32,6 @@ namespace Block_bounce.levels
 
             // Begin level design
             #region
-<<<<<<< HEAD
-            pounderList.Add(new Pounder(Content.Load<Texture2D>("level/pounder/40pounder100"), new Vector2(200, 500), 2));
-=======
             // Spike
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(150, 470)));
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(210, 560)));
@@ -85,7 +82,6 @@ namespace Block_bounce.levels
 
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(100, 360)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(400, 360))); 
->>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
             #endregion
         }
     }
