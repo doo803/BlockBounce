@@ -16,6 +16,7 @@ namespace Block_bounce
         // Screen dimension
         public static int screenHeight = 600;
         public static int screenWidth = 900;
+        public int difficulty;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -24,7 +25,11 @@ namespace Block_bounce
         public enum State
         { 
             Menu,
+<<<<<<< HEAD
             DifficultySelect,
+=======
+            Difficulty,
+>>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
             Playing,
             Pause,
             Credits,
@@ -40,6 +45,7 @@ namespace Block_bounce
         Credits credits = new Credits();
         SoundManager sm = new SoundManager();
         HUD hud = new HUD();
+        DifficultySelect diff = new DifficultySelect();
 
         public Game1()
         {           
@@ -66,8 +72,11 @@ namespace Block_bounce
             // Load content from menu
             menu.LoadContent(Content);
 
-            // Load content from Pause
+            // Load content from pause
             pause.LoadContent(Content);
+
+            // Load content from difficultySelect
+            diff.LoadContent(Content);
 
             // Load content from credits
             credits.LoadContent(Content);
@@ -91,6 +100,8 @@ namespace Block_bounce
             // Makes mouse visible
             IsMouseVisible = true;
 
+            hud.difficulty = difficulty;
+
             hud.Update(gameTime);
 
             KeyboardState keyState = Keyboard.GetState();
@@ -106,17 +117,16 @@ namespace Block_bounce
 
                         if (menu.menuVal == 1)
                         {
+<<<<<<< HEAD
                             gameState = State.DifficultySelect;
+=======
+                            gameState = State.Difficulty;
+>>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
 
                             // Stop menu music
                             MediaPlayer.Stop();
                             menu.songBegin = 0;
-
-                            // Begin HUD timer from 0
-                            hud.ticks = 0;
-                            hud.secondsTaken = 0;
-                            hud.minutesTaken = 0;
-
+                            
                             // Play background music
                             MediaPlayer.Play(sm.level1Music);
                             MediaPlayer.IsRepeating = true;
@@ -144,6 +154,7 @@ namespace Block_bounce
                     }
                     #endregion
 
+<<<<<<< HEAD
                 // UPDATE DIFFICULTYSELECT STATE
                 case State.DifficultySelect:
                     #region
@@ -154,6 +165,76 @@ namespace Block_bounce
                     #endregion
 
                 // UPDATE PLAYING STATE
+=======
+                case State.Difficulty:
+                    #region
+                    {
+                        diff.Update(gameTime);
+
+                        switch (diff.menuVal)
+                        { 
+                            case 1:
+                            {
+                                difficulty = 1;
+                                gameState = State.Playing;
+                                diff.menuVal = 0;
+
+                                // Begin HUD timer from 0
+                                hud.ticks = 0;
+                                hud.secondsTaken = 0;
+                                hud.minutesTaken = 0;
+
+                                break;
+                            }
+
+                            case 2:
+                            {
+                                difficulty = 2;
+                                gameState = State.Playing;
+                                diff.menuVal = 0;
+
+                                // Begin HUD timer from 0
+                                hud.ticks = 0;
+                                hud.secondsTaken = 0;
+                                hud.minutesTaken = 0;
+
+                                break;
+                            }
+
+                            case 3:
+                            {
+                                difficulty = 3;
+                                gameState = State.Playing;
+                                diff.menuVal = 0;
+
+                                // Begin HUD timer from 0
+                                hud.ticks = 0;
+                                hud.secondsTaken = 0;
+                                hud.minutesTaken = 0;
+
+                                break;
+                            }
+
+                            case 4:
+                            {
+                                difficulty = 4;
+                                gameState = State.Playing;
+                                diff.menuVal = 0;
+
+                                // Begin HUD timer from 0
+                                hud.ticks = 0;
+                                hud.secondsTaken = 0;
+                                hud.minutesTaken = 0;
+
+                                break;
+                            }
+                        }
+                        
+                        break;
+                    }
+                    #endregion 
+
+>>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
                 case State.Playing:
                     #region
                     {
@@ -235,7 +316,9 @@ namespace Block_bounce
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearWrap,
+                DepthStencilState.Default, RasterizerState.CullNone);
+
             base.Draw(gameTime);
            
             switch (gameState)
@@ -249,6 +332,7 @@ namespace Block_bounce
                     }
                 #endregion
 
+<<<<<<< HEAD
                 // DRAWING DRAW STATE
                 case State.DifficultySelect:
                     #region
@@ -256,6 +340,16 @@ namespace Block_bounce
                         break;
                     }
                     #endregion
+=======
+                // DRAWING DIFFICULTY STATE
+                #region
+                case State.Difficulty:
+                    {
+                        diff.Draw(spriteBatch);
+                        break;
+                    }
+                #endregion
+>>>>>>> 87133217f72bb31c7f91a51829ccc8565590b739
 
                 // DRAWING PLAYING STATE
                 #region
