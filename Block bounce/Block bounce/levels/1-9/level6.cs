@@ -41,6 +41,9 @@ namespace Block_bounce.levels
             // Centre wall
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/20platform600"), new Vector2(Game1.screenWidth / 2 - 10, 50)));
 
+            // Checkpoint
+            checkpointList.Add(new Checkpoint(new Vector2(Game1.screenWidth / 2 - 10, 30)));
+
             // Left side
             #region
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(-50, Game1.screenHeight - 100)));

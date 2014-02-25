@@ -44,6 +44,7 @@ namespace Block_bounce.levels
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(100, Game1.screenHeight - 300)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/40platform20"), new Vector2(430, 220)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(500, Game1.screenHeight - 300)));
+            checkpointList.Add(new Checkpoint(new Vector2(440, 200)));
 
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(0, Game1.screenHeight - 140)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(400, Game1.screenHeight - 140)));

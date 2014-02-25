@@ -223,6 +223,8 @@ namespace Block_bounce
                         // Update Playing class
                         play.Update(gameTime);
 
+                        hud.level = play.currentLevel;
+
                         // Update HUD
                         hud.Update(gameTime);
 

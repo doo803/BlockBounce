@@ -44,9 +44,7 @@ namespace Block_bounce
             hasDied = false;
             timer = 0;
             initialTimer = 0;
-            i = 0;
-
-            
+            i = 0;           
         }
 
         // Load Content
@@ -501,6 +499,7 @@ namespace Block_bounce
                 currentLevel++;
             }
 
+            hud.Update(gameTime);
             p.Update(gameTime);
             PlayerSounds();
         }

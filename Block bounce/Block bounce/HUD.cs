@@ -14,7 +14,7 @@ namespace Block_bounce
 {
     public class HUD
     {
-        public int secondsTaken, minutesTaken, screenWidth, screenHeight, deathCount, ticks, difficulty;
+        public int secondsTaken, minutesTaken, screenWidth, screenHeight, deathCount, ticks, difficulty, level;
         public SpriteFont font;
         public bool showHud;
 
@@ -23,7 +23,7 @@ namespace Block_bounce
         {
             showHud = true;
             font = null;
-            
+            level = 1;
         }
 
         // Load Content
@@ -97,7 +97,9 @@ namespace Block_bounce
                             break;
                         }
                     #endregion
-                }                
+                }
+
+                spriteBatch.DrawString(font, "Level: " + level, new Vector2(10, 5), Color.Red);
             }
         }
     }

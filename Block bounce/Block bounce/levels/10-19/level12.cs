@@ -86,7 +86,8 @@ namespace Block_bounce.levels
                 3, 60));
 
             decayingPlatformList.Add(new DecayingPlatform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(700, Game1.screenHeight - 190),
-                3, 60));
+                3, 60));           
+      
             #endregion
 
             // Second layer 
@@ -110,8 +111,9 @@ namespace Block_bounce.levels
             decayingPlatformList.Add(new DecayingPlatform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(600, Game1.screenHeight - 270),
                 3, 60));
 
-            decayingPlatformList.Add(new DecayingPlatform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(100, Game1.screenHeight - 340),
-                3, 60));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(100, Game1.screenHeight - 340)));
+
+            checkpointList.Add(new Checkpoint(new Vector2(100, 240)));
 
             #endregion
 

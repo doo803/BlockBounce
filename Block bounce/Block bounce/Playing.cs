@@ -27,6 +27,7 @@ namespace Block_bounce
         public levels.level11 l11 = new levels.level11();
         public levels.level12 l12 = new levels.level12();
         public levels.level13 l13 = new levels.level13();
+        HUD hud = new HUD();
 
         public int currentLevel, difficulty;
         public Vector2 playerPosition;
@@ -91,7 +92,7 @@ namespace Block_bounce
         public void Update(GameTime gameTime)
         {
             // Allow dev mode tools
-            DevTools();
+            DevTools();          
 
             baseLevel.difficulty = difficulty;
 
@@ -111,7 +112,7 @@ namespace Block_bounce
 
                         else playerIsAlive = true;
                         #endregion
-                        currentLevel = l1.currentLevel;                       
+                        currentLevel = l1.currentLevel;
                         l1.Update(gameTime);
                         break;
                     }

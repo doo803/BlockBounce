@@ -105,7 +105,10 @@ namespace Block_bounce.levels
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/floatingspike"), new Vector2(724, Game1.screenHeight - 425)));
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/floatingspike"), new Vector2(763, Game1.screenHeight - 425)));
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/floatingspike"), new Vector2(841, Game1.screenHeight - 425)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/floatingspike"), new Vector2(876, Game1.screenHeight - 425)));          
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/floatingspike"), new Vector2(876, Game1.screenHeight - 425)));
+
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(440, 50)));
+            checkpointList.Add(new Checkpoint(new Vector2(440, 30)));
 
             #endregion
 
