@@ -42,6 +42,10 @@ namespace Block_bounce.levels
             // Moving platforms
             movingPlatformList.Add(new MovingPlatform(Content.Load<Texture2D>("level/platform/100platform20"), new Vector2(800, 140), 0, 4, 
                 new Vector2 (40, 0), new Vector2(700, 0), new Vector2(0, 140), new Vector2(0, 140)));
+            
+            // Checkpoint
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(880, 140)));
+            checkpointList.Add(new Checkpoint(new Vector2(880, 120)));
 
             // Spikes
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/floatingspike"), new Vector2(200, 110)));

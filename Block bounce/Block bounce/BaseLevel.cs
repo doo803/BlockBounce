@@ -18,7 +18,7 @@ namespace Block_bounce
         public int timer, initialTimer, difficulty;
         public int currentLevel, i;
         public Rectangle endArea;
-        public bool hasDied, isColliding, isOnConveyor;
+        public bool hasDied, isColliding, isOnConveyor, isGameOver;
         public Player p;
         public DecayingPlatform decayPlat;
         public HUD hud = new HUD();
@@ -30,6 +30,7 @@ namespace Block_bounce
         public List<PushPlatform> pushPlatformList = new List<PushPlatform>();
         public List<Spikes> spikeList = new List<Spikes>();
         public List<MovingSpike> movingSpikeList = new List<MovingSpike>();
+        public List<RisingSpike> risingSpikeList = new List<RisingSpike>();
         public List<SpikeRow> spikeRowList = new List<SpikeRow>();
         public List<Pounder> pounderList = new List<Pounder>();
         public List<Conveyor> conveyorList = new List<Conveyor>();
@@ -327,6 +328,20 @@ namespace Block_bounce
                 }
             #endregion
 
+            foreach (RisingSpike rs in risingSpikeList)
+            #region
+            {
+                rs.Update(gameTime);
+
+                if (p.boundingBox.Intersects(rs.boundingBox))
+                {
+                    p.playerPosition = startPos;
+                    p.velocity.Y = 0;
+                    hasDied = true;
+                }
+            }
+            #endregion
+
             foreach (Pounder pound in pounderList)
             #region
             {
@@ -491,6 +506,12 @@ namespace Block_bounce
                 hasDied = false;
                 hud.deathCount += 1;
                 p.playerDied = true;
+                isGameOver = true;
+            }
+
+            if (isGameOver)
+            {
+                p.canMove = false;
             }
 
             // End position
@@ -573,6 +594,13 @@ namespace Block_bounce
             #region
             {
                 ms.Draw(spriteBatch);
+            }
+            #endregion
+
+            foreach (RisingSpike rs in risingSpikeList)
+            #region
+            {
+                rs.Draw(spriteBatch);
             }
             #endregion
 

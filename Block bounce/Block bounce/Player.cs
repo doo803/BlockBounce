@@ -23,7 +23,7 @@ namespace Block_bounce
         // Gravity and jumping
 
         public Vector2 velocity;
-        public bool hasJumped;
+        public bool hasJumped, canMove;
 
         // Instantiate soundmanager
         public SoundManager sm = new SoundManager();
@@ -37,6 +37,7 @@ namespace Block_bounce
             terminalVelocity = 5f;
             initialTimer = 0;
             gravForce = 0.5f;
+            canMove = true;
 
             playerSpeed = 5f;
             playerIsAlive = true;            
@@ -54,86 +55,87 @@ namespace Block_bounce
             sm.Update(gameTime);
             #endregion
 
-            playerPosition += velocity;
-
-            // Set terminal velocity
-            if (velocity.Y >= terminalVelocity)
-            { 
-                velocity.Y = terminalVelocity;
-            }
-
-            // Player bounding box
-            boundingBox = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerTexture.Width, playerTexture.Height);
-
-            // Control player movement left and right
-            #region
-            // Move player left
-            if (keyState.IsKeyDown(Keys.Left) || 
-                GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed)
+            if (canMove)
             {
-                velocity.X = -playerSpeed;
-            }
+                playerPosition += velocity;
 
-            // Move player right
-            else if (keyState.IsKeyDown(Keys.Right) || GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed)
-            {
-                velocity.X = playerSpeed;
-            }
-            #endregion
+                // Set terminal velocity
+                if (velocity.Y >= terminalVelocity)
+                {
+                    velocity.Y = terminalVelocity;
+                }
 
-            // Move player with thumbstick
-            #region
-            else if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < -0.1f)
-            {
-                velocity.X = -playerSpeed;
-            }
+                // Player bounding box
+                boundingBox = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerTexture.Width, playerTexture.Height);
 
-            else if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0.1f)
-            {
-                velocity.X = playerSpeed;
-            }
+                // Control player movement left and right
+                #region
+                // Move player left
+                if (keyState.IsKeyDown(Keys.Left) ||
+                    GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed)
+                {
+                    velocity.X = -playerSpeed;
+                }
 
-            #endregion            
+                // Move player right
+                else if (keyState.IsKeyDown(Keys.Right) || GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed)
+                {
+                    velocity.X = playerSpeed;
+                }
+                #endregion
 
-            // Don't move if stationary
-            else velocity.X = 0f;
+                // Move player with thumbstick
+                #region
+                else if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < -0.1f)
+                {
+                    velocity.X = -playerSpeed;
+                }
 
-            // Begin jump
-            if ((keyState.IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) && hasJumped == false)
-            {
-                playerPosition.Y -= 10;
-                velocity.Y = -10;
-                hasJumped = true;
-            }
+                else if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0.1f)
+                {
+                    velocity.X = playerSpeed;
+                }
+
+                #endregion
+
+                // Don't move if stationary
+                else velocity.X = 0f;
+
+                // Begin jump
+                if ((keyState.IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) && hasJumped == false)
+                {
+                    playerPosition.Y -= 10;
+                    velocity.Y = -10;
+                    hasJumped = true;
+                }
 
 
-            float i = 1;
-            velocity.Y += gravForce * i;           
+                float i = 1;
+                velocity.Y += gravForce * i;
 
-            // Make sure player stays in screen bounds
-            #region
-            // Stop player going off left side of screen
-            if (playerPosition.X <= 0)
-            {
-                playerPosition.X = 0;
-            }
+                // Make sure player stays in screen bounds
+                #region
+                // Stop player going off left side of screen
+                if (playerPosition.X <= 0)
+                {
+                    playerPosition.X = 0;
+                }
 
-            // Stop player going off right side of screen
-            if ((playerPosition.X + playerTexture.Width) >= Game1.screenWidth)
-            {
-                playerPosition.X = Game1.screenWidth - playerTexture.Width;
-            }
+                // Stop player going off right side of screen
+                if ((playerPosition.X + playerTexture.Width) >= Game1.screenWidth)
+                {
+                    playerPosition.X = Game1.screenWidth - playerTexture.Width;
+                }
 
-            // Stop player going off top of screen 
-            if ((playerPosition.Y) <= 0)
-            {
-                velocity.Y = 0;
-                playerPosition.Y += 5;
-                hasJumped = true;
-            }
-
-            #endregion
-
+                // Stop player going off top of screen 
+                if ((playerPosition.Y) <= 0)
+                {
+                    velocity.Y = 0;
+                    playerPosition.Y += 5;
+                    hasJumped = true;
+                }
+                #endregion
+            }           
         }
 
         // Draw

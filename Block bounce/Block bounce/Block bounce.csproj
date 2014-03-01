@@ -157,6 +157,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="PushPlatform.cs" />
+    <Compile Include="RisingSpike.cs" />
     <Compile Include="Shooter.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="SpikeRow.cs" />
