@@ -420,7 +420,6 @@ namespace Block_bounce
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
-                    p.playerPosition.Y = sh.position.Y - 20;
                 }
 
                 if (p.boundingBox.Y - 20 >= (sh.boundingBox.Y))

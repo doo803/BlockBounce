@@ -51,8 +51,7 @@ namespace Block_bounce.levels
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(400, Game1.screenHeight - 370)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(0, Game1.screenHeight - 370)));
 
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(100, Game1.screenHeight - 460)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(500, Game1.screenHeight - 460)));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/800platform20"), new Vector2(100, Game1.screenHeight - 460)));
 
             // Spikes           
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(680, Game1.screenHeight - 450)));

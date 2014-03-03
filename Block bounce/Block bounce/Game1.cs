@@ -389,7 +389,7 @@ static class RectangleHelper
 
     public static bool hasHitLeftOf(this Rectangle r1, Rectangle r2)
     {
-        return (r1.Right >= r2.Left - 4 &&
+        return (r1.Right >= r2.Left - 5 &&
             r1.Right <= r2.Left &&
             r1.Bottom >= r2.Top &&
             r1.Top <= r2.Bottom);
@@ -397,7 +397,7 @@ static class RectangleHelper
 
     public static bool hasHitRightOf(this Rectangle r1, Rectangle r2)
     {
-        return (r1.Left >= r2.Right - 4 &&
+        return (r1.Left >= r2.Right - 5 &&
             r1.Left <= r2.Right &&
             r1.Bottom >= r2.Top &&
             r1.Top <= r2.Bottom);

@@ -47,9 +47,7 @@ namespace Block_bounce.levels
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(300, 440)));
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(260, 370)));
 
-            // Rising spike
-            risingSpikeList.Add(new RisingSpike(Content.Load<Texture2D>("level/spike/risingspike"), new Vector2(450, 200), new Vector2(0, 200),
-                new Vector2(0, 300), 4));
+            
 
             // Wall
             platformList.Add(new Platform(Content.Load<Texture2D>("level/wall/20wall600"), new Vector2(800, 100)));
