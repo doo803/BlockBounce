@@ -51,6 +51,8 @@ namespace Block_bounce
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.PreferredBackBufferWidth = screenWidth;
+            System.IO.File.WriteAllText(@"Difficulty.txt", "0");
+            System.IO.File.WriteAllText(@"Volume.txt", "0.5");
         }
 
         protected override void Initialize()
@@ -330,13 +332,12 @@ namespace Block_bounce
                 #region
                 case State.Playing:
                     {
-                        // Draw from playing
-                        play.Draw(spriteBatch);
-
                         // Draw from hud
                         hud.Draw(spriteBatch);
 
-                        
+                        // Draw from playing
+                        play.Draw(spriteBatch);
+                                               
                         break;
                     }
                 #endregion
@@ -388,7 +389,7 @@ static class RectangleHelper
 
     public static bool hasHitLeftOf(this Rectangle r1, Rectangle r2)
     {
-        return (r1.Right >= r2.Left - 5 &&
+        return (r1.Right >= r2.Left - 4 &&
             r1.Right <= r2.Left &&
             r1.Bottom >= r2.Top &&
             r1.Top <= r2.Bottom);
@@ -396,7 +397,7 @@ static class RectangleHelper
 
     public static bool hasHitRightOf(this Rectangle r1, Rectangle r2)
     {
-        return (r1.Left >= r2.Right - 5 &&
+        return (r1.Left >= r2.Right - 4 &&
             r1.Left <= r2.Right &&
             r1.Bottom >= r2.Top &&
             r1.Top <= r2.Bottom);

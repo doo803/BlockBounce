@@ -15,21 +15,21 @@ namespace Block_bounce
     {
         public SoundEffect jumpSound, click, pauseSound, resumeSound, playerDieSound, shotSound;
         public Song level1Music, menuMusic;
-        public int volumeTimer, volumeTimer2;
+        public int volumeTimer, volumeTimer2, initTimer;
         public float volume;
+        public double volumeDouble;
 
         // Constructor
         public SoundManager()
         {
-            volume = 0.0f;
             volumeTimer = 0;
-            volumeTimer2 = 0;            
+            volumeTimer2 = 0;
         }
 
         // Load content
         public void LoadContent(ContentManager Content)
         {
-            level1Music = Content.Load<Song>("audio/level1music");
+            level1Music = Content.Load<Song>("audio/levelmusic");
             click = Content.Load<SoundEffect>("audio/click");
             pauseSound = Content.Load<SoundEffect>("audio/pausesound");
             resumeSound = Content.Load<SoundEffect>("audio/resumesound");
@@ -41,29 +41,25 @@ namespace Block_bounce
 
         // Update
         public void Update(GameTime gameTime)
-        {
+        {            
             MediaPlayer.Volume = (float)volume;
             SoundEffect.MasterVolume = (float)volume;
 
             KeyboardState keyState = Keyboard.GetState();
 
-            // Keep volume within 0.0f to 1.0f range
-            #region
-            if (volume >= 1.0f)
-            {
-                volume = 1.0f;
-            }
+            initTimer++;
 
-            if (volume <= 0f)
+            if(initTimer == 1)
             {
-                volume = 0f;
+                string volumeString = System.IO.File.ReadAllText(@"Volume.txt");
+                volumeDouble = Convert.ToDouble(volumeString);
+                volume = (float)volumeDouble;
             }
-            #endregion
 
             // Change volume
             #region
             // Up
-            if (keyState.IsKeyDown(Keys.PageUp))
+            if (keyState.IsKeyDown(Keys.PageUp) && volume < 0.9)
             {
                 volumeTimer++;
 
@@ -71,10 +67,16 @@ namespace Block_bounce
                 {
                     volume += 0.1f;
                 }
+
+                string[] volumeWriteString = { volume.ToString() };
+
+                System.IO.File.WriteAllLines("Volume.txt", volumeWriteString);
+
+                initTimer = 0;
             }
 
             // Down
-            if (keyState.IsKeyDown(Keys.PageDown))
+            if (keyState.IsKeyDown(Keys.PageDown) && volume > 0.1)
             {
                 volumeTimer2++;
 
@@ -82,6 +84,12 @@ namespace Block_bounce
                 {
                     volume -= 0.1f;
                 }
+
+                string[] volumeWriteString = { volume.ToString() };
+
+                System.IO.File.WriteAllLines("Volume.txt", volumeWriteString);
+
+                initTimer = 0;
             }
 
             // Reset volume timers

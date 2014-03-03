@@ -52,22 +52,22 @@ namespace Block_bounce.levels
 
 
             // Spikes
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(-100, Game1.screenHeight - 485)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(300, Game1.screenHeight - 485)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(-100, Game1.screenHeight - 480)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(300, Game1.screenHeight - 480)));
 
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(300, Game1.screenHeight - 325)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(700, Game1.screenHeight - 325)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(300, Game1.screenHeight - 320)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(700, Game1.screenHeight - 320)));
 
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(-100, Game1.screenHeight - 165)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(300, Game1.screenHeight - 165)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(-100, Game1.screenHeight - 160)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/10spikerow"), new Vector2(300, Game1.screenHeight - 160)));
 
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(200, Game1.screenHeight - 285)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(233, Game1.screenHeight - 285)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(266, Game1.screenHeight - 285)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(200, Game1.screenHeight - 290)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(233, Game1.screenHeight - 290)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(266, Game1.screenHeight - 290)));
 
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(600, Game1.screenHeight - 285)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(633, Game1.screenHeight - 285)));
-            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(666, Game1.screenHeight - 285)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(600, Game1.screenHeight - 290)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(633, Game1.screenHeight - 290)));
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(666, Game1.screenHeight - 290)));
 
 
 

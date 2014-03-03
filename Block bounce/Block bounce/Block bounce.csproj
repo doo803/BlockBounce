@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -131,6 +131,7 @@
     <Compile Include="Credits.cs" />
     <Compile Include="DecayingPlatform.cs" />
     <Compile Include="DifficultySelect.cs" />
+    <Compile Include="Gameover.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="levels\1-9\level1.cs" />
     <Compile Include="levels\1-9\level2.cs" />

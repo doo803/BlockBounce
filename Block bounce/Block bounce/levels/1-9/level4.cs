@@ -62,8 +62,9 @@ namespace Block_bounce.levels
         // Draw ** Use if drawing non inherited objects (e.g non-default background) **
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
+
+            base.Draw(spriteBatch);            
         }
     }
 }

@@ -16,12 +16,13 @@ namespace Block_bounce
     {
         public Texture2D endAreaTexture, bulletLeft, bulletRight, backgroundMain, brokenTexture, check1, check2;
         public int timer, initialTimer, difficulty;
-        public int currentLevel, i;
+        public int currentLevel, i, j;
         public Rectangle endArea;
         public bool hasDied, isColliding, isOnConveyor, isGameOver;
         public Player p;
         public DecayingPlatform decayPlat;
         public HUD hud = new HUD();
+        public GameOver gmo = new GameOver();
         public SoundManager sm = new SoundManager();
         public List<Platform> platformList = new List<Platform>();
         public List<MovingPlatform> movingPlatformList = new List<MovingPlatform>();
@@ -45,13 +46,16 @@ namespace Block_bounce
             hasDied = false;
             timer = 0;
             initialTimer = 0;
-            i = 0;           
+            i = 0;
+            j = 0;
         }
 
         // Load Content
         public virtual void LoadContent(ContentManager Content)
         {
             sm.LoadContent(Content);
+            gmo.LoadContent(Content);
+
             //backgroundMain = Content.Load<Texture2D>("level/backgroundmain");
             endAreaTexture = Content.Load<Texture2D>("level/redpixel");
             brokenTexture = Content.Load<Texture2D>("level/platform/brokenTexture");
@@ -73,6 +77,8 @@ namespace Block_bounce
         public virtual void Update(GameTime gameTime)
         {
             initialTimer++;
+           
+            KeyboardState keyState = Keyboard.GetState();
 
             foreach (Platform plat in platformList)
             #region
@@ -83,6 +89,7 @@ namespace Block_bounce
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
+                    p.playerPosition.Y = plat.position.Y - 20;
                 }
 
                 else if (p.boundingBox.hasHitBottomOf(plat.boundingBox))
@@ -90,11 +97,6 @@ namespace Block_bounce
                     p.velocity.Y = 0;
                     p.playerPosition.Y += 5;
                     p.hasJumped = true;
-                }
-
-                if (p.boundingBox.Y - 20 >= (plat.boundingBox.Y))
-                {
-                    isColliding = true;
                 }
 
                 if (p.boundingBox.hasHitLeftOf(plat.boundingBox))
@@ -111,7 +113,17 @@ namespace Block_bounce
                     {
                         p.velocity.X = 0;
                     }
-                }               
+                } 
+              
+                if (p.boundingBox.isOnTopOf(plat.boundingBox) && p.boundingBox.hasHitRightOf(plat.boundingBox))
+                {
+                    p.playerPosition.X -= 1;
+                }
+
+                if (p.boundingBox.isOnTopOf(plat.boundingBox) && p.boundingBox.hasHitLeftOf(plat.boundingBox))
+                {
+                    p.playerPosition.X += 1;
+                }
             }
             #endregion
 
@@ -124,6 +136,7 @@ namespace Block_bounce
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
+                    p.playerPosition.Y = mplat.position.Y - 20;
                 }
 
                 if (p.boundingBox.Y - 20 >= (mplat.boundingBox.Y))
@@ -188,6 +201,7 @@ namespace Block_bounce
                 if (p.boundingBox.isOnTopOf(dplat.boundingBox))
                 {
                     dplat.beginDecay = true;
+                    p.playerPosition.Y = dplat.position.Y - 20;
                 }
 
                 if (dplat.decaying == 2)
@@ -278,6 +292,7 @@ namespace Block_bounce
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
+                    p.playerPosition.Y = pushPlat.position.Y - 20;
                 }
 
                 else if (p.boundingBox.hasHitBottomOf(pushPlat.boundingBox))
@@ -405,6 +420,7 @@ namespace Block_bounce
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
+                    p.playerPosition.Y = sh.position.Y - 20;
                 }
 
                 if (p.boundingBox.Y - 20 >= (sh.boundingBox.Y))
@@ -502,16 +518,33 @@ namespace Block_bounce
             // Stops sound playing twice if player hits more than 1 spike 
             if (hasDied == true)
             {
-                sm.playerDieSound.Play();
+                
                 hasDied = false;
                 hud.deathCount += 1;
-                p.playerDied = true;
+                j++; if (j == 1)
+                {
+                    sm.playerDieSound.Play();
+                    p.playerDied = true;
+                }               
                 isGameOver = true;
+            }
+
+            else
+            {
+                j = 0;
             }
 
             if (isGameOver)
             {
                 p.canMove = false;
+                
+                if (keyState.IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
+                {
+                    isGameOver = false;
+                    p.canMove = true;
+                }
+
+                gmo.Update(gameTime);
             }
 
             // End position
@@ -522,7 +555,7 @@ namespace Block_bounce
 
             hud.Update(gameTime);
             p.Update(gameTime);
-            PlayerSounds();
+            //PlayerSounds();
         }
 
         // Draw
@@ -644,6 +677,11 @@ namespace Block_bounce
             #endregion
 
             p.Draw(spriteBatch);
+
+            if(isGameOver)
+            {
+                gmo.Draw(spriteBatch);
+            }           
         }
 
         // Player sounds
@@ -652,7 +690,7 @@ namespace Block_bounce
             initialTimer++;
 
             // Jump sound
-            if (p.hasJumped == true && initialTimer >= 5) // Stops sound from playing within the first 5 frames of game loading
+            if (p.velocity.Y <= -9.9 && initialTimer >= 5) // Stops sound from playing within the first 5 frames of game loading
             {
                 timer++;
                 if (timer == 1)

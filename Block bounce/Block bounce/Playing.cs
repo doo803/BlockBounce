@@ -402,7 +402,7 @@ namespace Block_bounce
             if (devMode == true)
             { 
                 // Skip forwards
-                if(keyState.IsKeyDown(Keys.NumPad6) || GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
+                if(keyState.IsKeyDown(Keys.NumPad6) || GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed)
                 {
                     i++;
                     if(i == 1)
@@ -423,7 +423,7 @@ namespace Block_bounce
             }
 
             // reset i to 0 when keys used are all up
-            if (keyState.IsKeyUp(Keys.NumPad6) && GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Released &&
+            if (keyState.IsKeyUp(Keys.NumPad6) && GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Released &&
                 keyState.IsKeyUp(Keys.NumPad4) && GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Released)
             {
                 i = 0;

@@ -47,21 +47,18 @@ namespace Block_bounce.levels
             // Left side
             #region
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(-50, Game1.screenHeight - 100)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(90, Game1.screenHeight - 190)));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/700platform20"), new Vector2(90, Game1.screenHeight - 190)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(-50, Game1.screenHeight - 280)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(90, Game1.screenHeight - 370)));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/700platform20"), new Vector2(90, Game1.screenHeight - 370)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(-50, Game1.screenHeight - 460)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(90, Game1.screenHeight - 550)));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/700platform20"), new Vector2(90, Game1.screenHeight - 550)));
             #endregion
 
             // Right side
             #region
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(550, Game1.screenHeight - 100)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(410, Game1.screenHeight - 190)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(550, Game1.screenHeight - 280)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(410, Game1.screenHeight - 370)));
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(550, Game1.screenHeight - 460)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(410, Game1.screenHeight - 550)));
             #endregion
 
             // MOVING spikes

@@ -45,7 +45,7 @@ namespace Block_bounce
             currentFrame++;
 
             // Degrees to radians, radians = pi(X)/180, where X = degrees
-            rotation = -(MathHelper.Pi * (currentFrame * 15))/180;
+            rotation = -(MathHelper.Pi * (currentFrame * 5))/180;
 
             if (position.Y > downLimit.Y)
             {
