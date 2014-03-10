@@ -36,11 +36,6 @@ namespace Block_bounce
             spriteHeight = 15;
         }
 
-        public void LoadContent(ContentManager Content)
-        { 
-
-        }
-
         public void Update(GameTime gameTime)
         {
             boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, 15);
@@ -56,7 +51,7 @@ namespace Block_bounce
             }
 
             // Destroy bullet if it reaches side of screen
-            if (position.X <= -20)
+            if (position.X <= -20 || position.X >= 950)
             {
                 isVisible = false;
             }

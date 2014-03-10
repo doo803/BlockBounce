@@ -14,7 +14,7 @@ namespace Block_bounce
 {
     public class HUD
     {
-        public int secondsTaken, minutesTaken, screenWidth, screenHeight, deathCount, ticks, difficulty, level;
+        public int secondsTaken, minutesTaken, screenWidth, screenHeight, deathCount, ticks, difficulty, level, levelDeaths;
         public SpriteFont font;
         public bool showHud;
 
@@ -88,6 +88,7 @@ namespace Block_bounce
                     case 3:
                         {
                             spriteBatch.DrawString(font, "Difficulty: *Hard*", new Vector2(400, 5), Color.Red);
+                            spriteBatch.DrawString(font, "/ 5", new Vector2(835, 25), Color.Red);
                             break;
                         }
 

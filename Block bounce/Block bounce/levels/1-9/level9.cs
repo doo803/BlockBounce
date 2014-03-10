@@ -82,7 +82,7 @@ namespace Block_bounce.levels
             conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/800conveyorleft20"), new Vector2(0, Game1.screenHeight - 372), "left"));
 
             // Checkpoints
-            checkpointList.Add(new Checkpoint(new Vector2(880, 295)));
+            checkpointList.Add(new Checkpoint(new Vector2(880, 294)));
 
             #endregion
 

@@ -22,7 +22,7 @@ namespace Block_bounce
         // Constructor
         public DifficultySelect()
         {
-            selection = 1;
+            selection = 2;
             keyPress = 0;
             enterReset = 0;
         }

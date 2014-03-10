@@ -47,6 +47,9 @@ namespace Block_bounce.levels
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(300, 440)));
             spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/downspike"), new Vector2(260, 370)));
 
+
+            // Upper level
+            spikeList.Add(new Spikes(Content.Load<Texture2D>("level/spike/spike"), new Vector2(200, 340)));
             
 
             // Wall
@@ -59,8 +62,9 @@ namespace Block_bounce.levels
             conveyorList.Add(new Conveyor(Content.Load<Texture2D>("level/conveyor/100conveyorleft20"), new Vector2(285, 458), "left"));
 
             // Shooter 
-            shooterList.Add(new Shooter(Content.Load<Texture2D>("level/shooter/shooterleft"), new Vector2(780, 560),
+            shooterList.Add(new Shooter(Content.Load<Texture2D>("level/shooter/shooterleft"), new Vector2(775, 560),
                 "left", 60));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/20platform20"), new Vector2(795, 560)));
 
             shooterList.Add(new Shooter(Content.Load<Texture2D>("level/shooter/shooterleft"), new Vector2(440, 560),
                 "left", 60));
@@ -79,17 +83,20 @@ namespace Block_bounce.levels
 
             platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/900platform10"), new Vector2(0, 580)));
 
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(0, 460)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(300, 460)));
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/700platform20"), new Vector2(0, 460)));
 
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(100, 360)));
-            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/400platform20"), new Vector2(400, 360))); 
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/700platform20"), new Vector2(100, 360)));
+
+            platformList.Add(new Platform(Content.Load<Texture2D>("level/platform/700platform20"), new Vector2(0, 260)));
+
+            // Rising spike
+            //risingSpikeList.Add(new RisingSpike(Content.Load<Texture2D>("level/spike/risingspike"), new Vector2(300, 290),
+            //    new Vector2(0, 290), new Vector2(0, 320), 2));
 
             // Checkpoints
-            checkpointList.Add(new Checkpoint(new Vector2(780, 540)));
+            checkpointList.Add(new Checkpoint(new Vector2(775, 540)));
             checkpointList.Add(new Checkpoint(new Vector2(0, 440)));
             
-
             #endregion
         }
     }

@@ -154,6 +154,7 @@ namespace Block_bounce
                     #region
                     {
                         diff.Update(gameTime);
+                        sm.Update(gameTime);
 
                         switch (diff.menuVal)
                         { 
@@ -242,6 +243,7 @@ namespace Block_bounce
                         if (play.playerIsAlive == false)
                         {
                             hud.deathCount++;
+                            hud.levelDeaths++;
                         }
                  
                         break;
@@ -332,12 +334,12 @@ namespace Block_bounce
                 #region
                 case State.Playing:
                     {
+                        // Draw from playing
+                        play.Draw(spriteBatch);
+
                         // Draw from hud
                         hud.Draw(spriteBatch);
 
-                        // Draw from playing
-                        play.Draw(spriteBatch);
-                                               
                         break;
                     }
                 #endregion
