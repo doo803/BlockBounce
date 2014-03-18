@@ -16,8 +16,9 @@ namespace Block_bounce.levels
         Texture2D texture;
 
         public level9()
-        {
+        {           
             startPos = new Vector2(0, Game1.screenHeight - 30);
+            initStartPos = startPos;
         }
 
         public override void LoadContent(ContentManager Content)

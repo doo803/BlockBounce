@@ -17,8 +17,9 @@ namespace Block_bounce.levels
     {
         // Constructor
         public level3()
-        {
+        {            
             startPos = new Vector2(0, Game1.screenHeight - 30);
+            initStartPos = startPos;
         }
 
         // Load Content

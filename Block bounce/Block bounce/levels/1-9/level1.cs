@@ -19,6 +19,8 @@ namespace Block_bounce.levels
         public level1()
         {
             startPos = new Vector2(0, Game1.screenHeight - 30);
+            initStartPos = startPos;
+            levelNum = 1;
         }
 
         // Load Content
@@ -30,7 +32,7 @@ namespace Block_bounce.levels
             #region
             endArea = new Rectangle(880, Game1.screenHeight - 385, 20, 40);
 
-            currentLevel = 1;
+            currentLevel = 1;           
 
             background = Content.Load<Texture2D>("level/1/background");
             #endregion

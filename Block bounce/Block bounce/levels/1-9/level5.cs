@@ -12,13 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Block_bounce.levels
 {
-    // **CHANGE THIS PER LEVEL
     public class level5 : BaseLevel
     {
         // Constructor
         public level5()
         {
             startPos = new Vector2(0, Game1.screenHeight - 30);
+            initStartPos = startPos;
         }
 
         // Load Content

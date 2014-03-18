@@ -15,8 +15,9 @@ namespace Block_bounce.levels
     {
         // Constructor
         public level8()
-        {
+        {            
             startPos = new Vector2(0, 40);
+            initStartPos = startPos;
         }
 
         // Load Content

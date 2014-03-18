@@ -113,6 +113,10 @@ namespace Block_bounce
                         else playerIsAlive = true;
                         #endregion
                         currentLevel = l1.currentLevel;
+                        if (l1.currentLevel == 2)
+                        {
+                            l1.currentLevel = 1;
+                        }
                         l1.Update(gameTime);
                         break;
                     }
@@ -130,6 +134,10 @@ namespace Block_bounce
                         else playerIsAlive = true;
                         #endregion
                         currentLevel = l2.currentLevel;
+                        if (l2.currentLevel == 3)
+                        {
+                            l2.currentLevel = 2;
+                        }
                         l2.Update(gameTime);
                         break;
                     }
@@ -147,6 +155,10 @@ namespace Block_bounce
                         else playerIsAlive = true;
                         #endregion
                         currentLevel = l3.currentLevel;
+                        if (l3.currentLevel == 4)
+                        {
+                            l3.currentLevel = 3;
+                        }
                         l3.Update(gameTime);
                         break;
                     }
@@ -162,8 +174,13 @@ namespace Block_bounce
                         }
 
                         else playerIsAlive = true;
-                        #endregion
+                        #endregion     
                         currentLevel = l4.currentLevel;
+                        if (l4.currentLevel == 5)
+                        {
+                            l4.currentLevel = 4;
+                        }
+
                         l4.Update(gameTime);
                         break;
                     }

@@ -44,7 +44,7 @@ namespace Block_bounce
         // Constructor
         public BaseLevel()
         {
-            initStartPos = startPos;
+            
             hasDied = false;
             timer = 0;
             initialTimer = 0;
@@ -60,7 +60,6 @@ namespace Block_bounce
         {
             sm.LoadContent(Content);
             gmo.LoadContent(Content);
-            levelNum = currentLevel;
 
             font = Content.Load<SpriteFont>("hud/arial");
             //backgroundMain = Content.Load<Texture2D>("level/backgroundmain");
@@ -84,14 +83,14 @@ namespace Block_bounce
         public virtual void Update(GameTime gameTime)
         {
             initialTimer++;
-           
+
             KeyboardState keyState = Keyboard.GetState();
 
             foreach (Platform plat in platformList)
             #region
             {
                 plat.Update(gameTime);
-                
+
                 if (p.boundingBox.isOnTopOf(plat.boundingBox) && p.velocity.Y >= 0)
                 {
                     p.velocity.Y = 0;
@@ -99,8 +98,8 @@ namespace Block_bounce
                     // Fixes Y position not changing on death
                     if (keepLevel)
                     {
-                        p.playerPosition.Y = plat.position.Y - 21;   
-                    }                                     
+                        p.playerPosition.Y = plat.position.Y - 21;
+                    }
                 }
 
                 else if (p.boundingBox.hasHitBottomOf(plat.boundingBox))
@@ -124,8 +123,8 @@ namespace Block_bounce
                     {
                         p.velocity.X = 0;
                     }
-                } 
-              
+                }
+
                 if (p.boundingBox.isOnTopOf(plat.boundingBox) && p.boundingBox.hasHitRightOf(plat.boundingBox))
                 {
                     p.playerPosition.X -= 1;
@@ -150,7 +149,7 @@ namespace Block_bounce
                     if (keepLevel)
                     {
                         //p.playerPosition.Y = mplat.position.Y - 21;
-                    }     
+                    }
                 }
 
                 if (p.boundingBox.Y - 20 >= (mplat.boundingBox.Y))
@@ -227,7 +226,7 @@ namespace Block_bounce
                 {
                     p.velocity.Y = 0;
                     p.hasJumped = false;
-                }               
+                }
 
                 else if (p.boundingBox.hasHitBottomOf(dplat.boundingBox))
                 {
@@ -328,7 +327,7 @@ namespace Block_bounce
             #endregion
 
             foreach (Spikes sp in spikeList)
-            #region
+                #region
                 if (p.boundingBox.Intersects(sp.boundingBox))
                 {
                     p.playerPosition = startPos;
@@ -338,7 +337,7 @@ namespace Block_bounce
                 #endregion
 
             foreach (SpikeRow sprow in spikeRowList)
-            #region
+                #region
                 if (p.boundingBox.Intersects(sprow.boundingBox))
                 {
                     p.playerPosition = startPos;
@@ -348,14 +347,14 @@ namespace Block_bounce
                 #endregion
 
             foreach (MovingSpike ms in movingSpikeList)
-            #region
+                #region
                 if (p.boundingBox.Intersects(ms.boundingBox))
                 {
                     p.playerPosition = startPos;
                     p.velocity.Y = 0;
                     hasDied = true;
                 }
-            #endregion
+                #endregion
 
             foreach (RisingSpike rs in risingSpikeList)
             #region
@@ -398,7 +397,7 @@ namespace Block_bounce
                 }
             }
 
-            
+
             #endregion
 
             foreach (Shooter sh in shooterList)
@@ -466,7 +465,7 @@ namespace Block_bounce
                         p.velocity.X = 0;
                     }
                 }
-               
+
             }
             #endregion
 
@@ -487,7 +486,7 @@ namespace Block_bounce
                 {
                     if (b.boundingBox.Intersects(plat.boundingBox))
                     {
-                       b.isVisible = false;
+                        b.isVisible = false;
                     }
                 }
 
@@ -501,7 +500,7 @@ namespace Block_bounce
                     if (b.boundingBox.hasHitRightOf(sh.boundingBox) && sh.direction == "left")
                     {
                         b.isVisible = false;
-                    }                
+                    }
                 }
             }
             #endregion
@@ -509,11 +508,11 @@ namespace Block_bounce
             foreach (Checkpoint check in checkpointList)
             #region
             {
-                if(difficulty == 1)
+                if (difficulty == 1)
                 {
                     check.Update(gameTime);
 
-                    if(p.boundingBox.Intersects(check.boundingBox))
+                    if (p.boundingBox.Intersects(check.boundingBox))
                     {
                         check.activated = true;
                         startPos = new Vector2(check.boundingBox.X, check.boundingBox.Y);
@@ -538,7 +537,7 @@ namespace Block_bounce
                     sm.playerDieSound.Play();
                     p.playerDied = true;
                     deathCount++;
-                }               
+                }
                 isGameOver = true;
             }
 
@@ -550,7 +549,7 @@ namespace Block_bounce
             if (isGameOver)
             {
                 p.canMove = false;
-                
+
                 if (keyState.IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
                 {
                     isGameOver = false;
@@ -570,6 +569,16 @@ namespace Block_bounce
 
             hud.Update(gameTime);
             p.Update(gameTime);
+            if (difficulty == 3)
+            {
+                HardMode();
+            }
+
+            if(difficulty == 4)
+            {
+                InsaneMode();
+            }
+
             //PlayerSounds();
         }
 
@@ -732,8 +741,33 @@ namespace Block_bounce
             }
 
             startPos = initStartPos;
-            p.playerPosition = startPos;
-            currentLevel = levelNum;
+            p.playerPosition = initStartPos;
+        }
+
+        // Force player restart game
+        public void RestartGame()
+        {
+            ResetLevel();
+            currentLevel = 1;
+            deathCount = 0;
+        }
+
+        // Update hard mode (5 deaths per level)
+        public void HardMode()
+        {
+            if (deathCount >= 5)
+            {
+                RestartGame();
+            }
+        }
+
+        // Update insane mode (single death)
+        public void InsaneMode()
+        {
+            if (deathCount >= 1)
+            {
+                RestartGame();
+            }
         }
     }
 }

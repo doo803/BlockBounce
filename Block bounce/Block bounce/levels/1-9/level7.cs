@@ -20,6 +20,7 @@ namespace Block_bounce.levels
         public level7()
         {
             startPos = new Vector2(0, Game1.screenHeight - 30);
+            initStartPos = startPos;
         }
 
         // Load Content
@@ -99,19 +100,19 @@ namespace Block_bounce.levels
 
             // Moving Spikes
             #region
-            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(100, Game1.screenHeight - 130),
+            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(100, Game1.screenHeight - 125),
                                 new Vector2(100, 0), new Vector2(870, 0)));
 
-            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(770, Game1.screenHeight - 220),
+            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(770, Game1.screenHeight - 215),
                                 new Vector2(0, 0), new Vector2(770, 0)));
 
-            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(100, Game1.screenHeight - 310),
+            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(100, Game1.screenHeight - 305),
                                 new Vector2(100, 0), new Vector2(870, 0)));
 
-            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(770, Game1.screenHeight - 400),
+            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(770, Game1.screenHeight - 395),
                                 new Vector2(0, 0), new Vector2(770, 0)));
 
-            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(100, Game1.screenHeight - 490),
+            movingSpikeList.Add(new MovingSpike(Content.Load<Texture2D>("level/spike/spike"), new Vector2(100, Game1.screenHeight - 485),
                                 new Vector2(100, 0), new Vector2(870, 0)));
 
             #endregion

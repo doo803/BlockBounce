@@ -14,8 +14,9 @@ namespace Block_bounce.levels
     public class level11 : BaseLevel
     {
         public level11()
-        {
+        {            
             startPos = new Vector2(0, Game1.screenHeight - 30);
+            initStartPos = startPos;
         }
 
         public override void LoadContent(ContentManager Content)

@@ -14,8 +14,9 @@ namespace Block_bounce.levels
     public class level13 : BaseLevel
     {
         public level13()
-        {
+        {            
             startPos = new Vector2(0, 560);
+            initStartPos = startPos;
         }
 
         public override void LoadContent(ContentManager Content)
